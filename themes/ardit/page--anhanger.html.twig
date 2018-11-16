@@ -1,0 +1,27 @@
+{% include directory ~ '/includes/region--header.html.twig' %}
+{% include directory ~ '/includes/anhanger-slider.html.twig' %}
+<div class="container cars-personen">
+    <h1 class="text-center normal-weight">Unsere Anhänger</h1>
+    <div class="row">
+        {{ page.content }}
+        <div class="clear"></div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="autoBoxModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h1 class="text-center spinner"><i class="fa fa-spinner fa-spin"></i></h1>
+            <div class="modal-body">
+
+            </div>
+        </div>
+
+    </div>
+</div>
+{%  include directory ~ '/includes/region--footer.html.twig' %}

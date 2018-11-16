@@ -1,0 +1,48 @@
+<div class="banner">
+    <div id="slider" class="carousel slide first-slide" data-ride="carousel" data-interval="false">
+
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
+            <li data-target="#slider" data-slide-to="0" class="active"></li>
+            <li data-target="#slider" data-slide-to="1"></li>
+            <li data-target="#slider" data-slide-to="2"></li>
+        </ul>
+
+        <div class="carousel-caption">
+            <div class="row">
+                <div class="col-md-12 col-lg-7 col-xl-5 offset-xl-1 slider-txt-left">
+                    <h1>{{ page.slider.headertitle }}</h1>
+                    <h6>{{ page.slider.header_subtitle }}</h6>
+                </div>
+                <div class="col-md-12 col-lg-5 col-xl-5 text-right slider-right">
+                    <iframe class="h-frame" scrolling="no" src="https://kunden2.cx9.de/ilg/reservierung_rd/"
+                            frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-inner d-none d-md-block ">
+            <div class="carousel-item active">
+                {{ page.slider.slider_one }}
+            </div>
+            <div class="carousel-item">
+                {{ page.slider.slider_two }}
+            </div>
+            <div class="carousel-item">
+                {{ page.slider.slider_three }}
+            </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#slider" data-slide="prev">
+                <span class="arrow">
+                    <span class="fas fa-arrow-left"></span>
+                </span>
+        </a>
+        <a class="carousel-control-next" href="#slider" data-slide="next">
+                <span class="arrow">
+                    <span class="fas fa-arrow-right"></span>
+                </span>
+        </a>
+
+    </div>
+</div>

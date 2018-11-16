@@ -1,0 +1,1071 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+$mainColor: #005197;
+$bgHighlight: #ededed;
+$sliderHeight: 650px;
+body {
+  overflow-x: hidden;
+}
+
+.clear {
+  clear: both;
+}
+
+*:not(.fa):not(.fas) {
+  font-family: 'Open Sans' !important;
+}
+
+.hindex {
+  z-index: 5 !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold !important;
+}
+
+nav.navbar li .dropdown-menu {
+  padding: 10px 20px 20px 0;
+  left: -40px;
+}
+
+.button-active {
+  background: $mainColor !important;
+}
+
+.carousel-caption {
+  z-index: 1;
+}
+
+.carousel-indicators {
+  bottom: -10px !important;
+
+  .ns-arrow {
+    color: $mainColor;
+    font-size: 30px;
+
+    &:hover {
+      color: #c33325;
+      transition: 0.2s;
+    }
+
+    &:first-child {
+      margin-right: auto;
+    }
+
+    &:last-child {
+      margin-left: auto;
+    }
+  }
+
+  li:not(.ns-arrow) {
+    background: transparent !important;
+    border: 2px solid white !important;
+    width: 20px !important;
+    height: 20px !important;
+    display: inline-block !important;
+    border-radius: 50% !important;
+    margin: 3px !important;
+    cursor: pointer !important;
+
+    &.active {
+      @extend .button-active;
+    }
+
+    &:hover {
+      @extend .button-active;
+      transition: 0.2s !important;
+    }
+  }
+}
+
+.top-sec {
+  background: $mainColor;
+  color: white;
+  line-height: 40px;
+
+  span {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+
+    .fa,
+    .fas,
+    .far {
+      margin-right: 10px;
+    }
+  }
+}
+
+.iframe {
+  z-index: 999999;
+  position: fixed;
+  display: none;
+
+  iframe {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.arrow {
+  padding: 15px 20px;
+  background: white;
+  color: #515151;
+  display: inline-block;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  background: none;
+  color: $mainColor;
+}
+
+nav.navbar {
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 3;
+
+  .logo-img {
+    width: 200px;
+  }
+
+  li {
+    //margin-right: 15px;
+    padding-top: 10px;
+
+    .dropdown-menu {
+      margin-top: 8px;
+      border: 0;
+      border-radius: 0;
+      background: rgba(255, 255, 255, 0.80);
+      border-bottom: 3px solid $mainColor;
+
+      .nav-link {
+        display: block;
+        width: 100%;
+        padding: .25rem 1.5rem;
+        clear: both;
+        font-weight: 400;
+        text-align: inherit;
+        white-space: nowrap;
+        border: 0;
+        &:before {
+          content: ">";
+          padding-right: 12px;
+          // color: $mainColor;
+          display: inline-block;
+          visibility: hidden;
+          font-size: 14px;
+          font-weight: bold;
+        }
+
+        &.active {
+          color: $mainColor;
+
+          &:before {
+            visibility: visible;
+          }
+        }
+
+        &:hover {
+          color: $mainColor;
+          background: none;
+          transition: 0.2s;
+        }
+      }
+    }
+
+    span {
+      display: none !important;
+      width: 60%;
+      height: 2px;
+      background: $mainColor;
+      display: block;
+      margin: 0 auto;
+    }
+
+    &.active {
+      a.nav-link strong {
+        color: $mainColor !important;
+      }
+
+      span {
+        display: block !important;
+      }
+    }
+  }
+
+  * {
+    color: black;
+
+    &:hover {
+      color: $mainColor;
+    }
+  }
+}
+
+.carousel.slide.first-slide {
+  h1 *,
+  h6 *{
+    text-align:left !important;
+  }
+  min-height: $sliderHeight !important;
+  max-height: $sliderHeight !important;
+
+  * {
+    max-height: $sliderHeight !important;
+  }
+
+  .carousel-inner {
+    display: block !important;
+    height: 100% !important;
+    min-height: $sliderHeight;
+  }
+
+  .carousel-item {
+    height: 100% !important;
+    min-height: $sliderHeight;
+
+    img {
+      width: 100%;
+      min-height: $sliderHeight;
+      height: 100% !important;
+      object-fit: cover;
+    }
+  }
+}
+
+.slider-txt-left {
+  margin-top: 110px;
+  z-index: 99999 !important;
+}
+
+.slider-right {
+  margin-top: 110px;
+  min-height: 350px;
+  z-index: 99999 !important;
+
+  iframe {
+    width: 100%;
+    max-width: 340px !important;
+    height: 100%;
+    z-index: 99999 !important;
+  }
+}
+
+.header {
+  margin-bottom: -84px;
+  z-index: 10;
+}
+
+.navbar-nav{
+  *{
+    font-weight:bold !important;
+    text-transform:uppercase !important;
+  }
+}
+
+.af-header {
+  background: $mainColor;
+  padding: 30px 0;
+  color: white;
+}
+
+.site-btn,
+.views-field-field-mehr a {
+  padding: .375rem .75rem;
+  display: inline-block;
+  margin-top: 30px;
+  text-align: center;
+  background: $mainColor;
+  border-radius: 0;
+  color: white;
+  font-weight: bold;
+
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.site-btn-outline {
+  background: transparent;
+  border: 2px solid $mainColor;
+  color: $mainColor;
+
+  &:hover {
+    background: $mainColor;
+    color: white;
+    transition: 0.2s;
+  }
+}
+
+.cars {
+  padding: 20px;
+  background: $bgHighlight;
+  .car,
+  .views-row {
+    width: 32%;
+    float: left !important;
+    background: white;
+    margin-right: 1.3%;
+    margin-bottom: 20px;
+    padding: 20px 20px 50px 20px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 550px;
+    overflow-y: auto;
+    position: relative;
+
+    img {
+      width: 100%;
+      max-width: 100% !important;
+      height: 250px !important;
+      object-fit: cover;
+    }
+
+    h3,
+    .views-field-title {
+      font-weight: bold;
+      font-size: 1.75rem !important;
+      margin-top: 10px;
+      margin-bottom: 0;
+    }
+    p,
+    .views-field-field-subtitle {
+      margin-bottom: 30px;
+    }
+    p,
+    .views-field-field-subtitle,
+    .views-field-field-info-1,
+    .views-field-field-info-2 {
+      margin-top: -5px;
+      font-weight: bold;
+    }
+
+    .info {
+      > div:first-child {
+        p {
+          margin-bottom: 0;
+        }
+      }
+
+      h5 {
+        span {
+          font-size: 14px;
+        }
+      }
+    }
+
+    .site-btn,
+    .views-field-field-mehr a {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+    }
+
+    &:hover {
+      -webkit-box-shadow: 0px 0px 0px 2px rgba(195, 51, 37, 1);
+      -moz-box-shadow: 0px 0px 0px 2px rgba(195, 51, 37, 1);
+      box-shadow: 0px 0px 0px 2px rgba(195, 51, 37, 1);
+      transition: 0.2s;
+
+      .site-btn,
+      .views-field-field-mehr a {
+        background: #c33325;
+        transition: 0.2s;
+      }
+    }
+  }
+}
+
+.icons-container {
+  padding: 60px 0;
+  $width: 150px;
+
+  .icons {
+    margin-top: 50px;
+
+    .icon {
+      width: $width;
+      height: $width;
+      border-radius: 50%;
+      margin: 50px auto 20px auto;
+      background: #488ccb;
+      color: white;
+      line-height: 147px;
+      font-size: 40px;
+    }
+
+    .line {
+      border-top: 4px solid #488ccb;
+      margin-top: 125px;
+    }
+
+    .title {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.v-none {
+  visibility: hidden !important;
+}
+
+.news-container {
+  padding: 50px 20px;
+  background: $bgHighlight;
+
+  #newsSlider {
+
+    .carousel-control-next,
+    .carousel-control-prev {
+      display: none;
+    }
+
+    .ci-mobile {
+      padding: 0 35px;
+      display: none;
+    }
+  }
+
+  .site-btn,
+  .views-field-field-mehr a {
+    padding-right: 50px;
+    padding-left: 50px;
+  }
+
+  .carousel-indicators {
+    bottom: -50px !important;
+  }
+
+  .second-slider {
+    background: none;
+    margin-top: 50px;
+    // padding: 20px;
+
+    .s2-item {
+      border: 1px solid $mainColor;
+      color: $mainColor;
+      margin-bottom: 50px;
+
+      &:last-child {
+        margin-bottom: 10px;
+      }
+
+      .s2-item-content {
+        padding: 15px;
+
+        p {
+          font-size: 14px;
+          // max-height: 126px;
+          // overflow-y: auto;
+        }
+      }
+
+      img {
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+.s2-item .site-btn:hover,
+.map-container .site-btn:hover,
+.s2-item .views-field-field-mehr a {
+  background: #c33325;
+  transition: 0.2s;
+}
+
+.map-container {
+  padding: 50px 0;
+
+  #map {
+    width: 100%;
+    height: 100%;
+    min-height: 443px;
+  }
+
+  .map-p {
+    margin-bottom: 50px;
+  }
+}
+
+.col-white {
+  color: white;
+}
+
+.site-input {
+  border-radius: 0;
+}
+
+.footer-btn {
+  width: 100%;
+  border-radius: 0;
+  outline: none;
+  box-shadow: none;
+  color: white;
+  background: transparent;
+  border: 2px solid white;
+
+  &:hover {
+    background: white;
+    color: $mainColor;
+    transition: 0.2s;
+  }
+
+}
+
+footer.footer {
+  background: $mainColor;
+  padding: 30px 0;
+  color: white;
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+
+    li {
+      a {
+        color: white;
+
+        &:hover {
+          color: white;
+        }
+      }
+    }
+  }
+
+  #fTextarea {
+    height: 92px;
+  }
+
+  .f-link {
+    * {
+      color: white;
+    }
+  }
+
+  .f-cols {
+    margin-bottom: 50px;
+  }
+}
+
+/*
+    informationen
+    preise
+*/
+.bg-content {
+  background-size: cover;
+  background-position: center;
+  padding: 230px 10px 170px 10px;
+  color: white;
+  position: relative;
+  > .contextual-region,
+  #block-personenwagensliderimage,
+  #block-uber-uns-slider-image,
+  #block-preise-slider-image {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width:100%;
+    height:100%;
+    img {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      width:auto;
+      object-fit: cover;
+      min-height:100%;
+      max-height: 100%;
+    }
+  }
+}
+
+.preise-bg {
+  //background-image: url(../images/preise-bg.png);
+}
+
+.about-bg {
+  background-image: url(../images/about-bg.png);
+}
+
+.preise-content {
+  margin: 100px auto;
+
+  .tab-link {
+    background: $mainColor;
+    padding: 7px 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    color: white;
+    cursor: pointer;
+    margin-top: 5px;
+    position: relative;
+
+    p {
+      margin-bottom: 0;
+    }
+
+    .tl-arrow {
+      position: absolute;
+      z-index: 9999;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .tab-content {
+    display: none;
+    padding: 15px;
+  }
+
+  table {
+    * {
+      font-weight: bold;
+    }
+
+    tbody {
+      width: 100%;
+
+      tr {
+        width: 100%;
+
+        &:nth-child(even) {
+          background: #e6e6e6;
+        }
+
+        td {
+          border-right: 2px solid white;
+        }
+      }
+    }
+  }
+}
+
+/*
+    kontakt page
+*/
+.k-map {
+  #map {
+    min-height: 500px;
+  }
+}
+
+.k-info-parent {
+  min-height: 250px;
+  position: relative;
+
+  .k-info {
+    position: absolute;
+    width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+
+    a.btn i {
+      margin-right: 15px;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.k-kontakt {
+  margin-top: 50px;
+  background: $bgHighlight;
+  padding: 70px 20px;
+  #block-ardit-page-title,
+  #edit-submit,
+  #edit-preview
+  {
+    display:none;
+  }
+  input,
+  select,
+  textarea {
+    border: 0;
+    outline: none;
+    box-shadow: none !important;
+    display: block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
+  label{
+    font-weight:bold;
+    margin-bottom:0;
+    margin-top:15px;
+  }
+
+  textarea {
+    height: 119px;
+  }
+
+  .senden-btn {
+    background: $mainColor;
+    border-color: $mainColor;
+    margin-bottom: 15px;
+  }
+
+  .abrechen-btn {
+    background: #b4b4b4;
+    border-color: #b4b4b4;
+    margin-bottom: 15px;
+  }
+
+  .err-msg {
+    display: none;
+  }
+
+  #recaptcha {
+    max-width: 100%;
+
+    * {
+      max-width: 100%;
+    }
+  }
+}
+
+// .k-info {
+//     position: absolute;
+//     width: 100%;
+//     bottom: 0;
+// }
+@media (max-width: 1200px) {
+  //.header {
+  //  margin-bottom: -106px !important;
+  //}
+}
+@media (min-width: 992px){
+  .car-p{
+    width:32% !important;
+  }
+}
+@media (max-width: 991px) {
+  .icons .line {
+    display: none !important;
+  }
+  .car,
+  .views-row {
+    width: 48% !important;
+  }
+  .map-container {
+    .mwt {
+      text-align: left !important;
+    }
+  }
+  .car-p{
+    width:48% !important;
+  }
+  .slider-right {
+    text-align: center !important;
+    margin-top: 48px !important;
+  }
+
+  .slider-txt-left {
+    margin-top: 10px !important;
+  }
+
+  #newsSlider {
+    .ci-desk {
+      display: none !important;
+    }
+
+    .ci-mobile {
+      display: flex !important;
+      transition: 0.5s;
+    }
+  }
+
+  .header {
+    margin-bottom: 0 !important;
+  }
+
+  nav.navbar {
+    background: rgb(255, 255, 255) !important;
+
+    .active {
+      span {
+        margin: 0 !important;
+        width: 25% !important;
+      }
+    }
+  }
+
+  .k-info-parent:last-child {
+    min-height: 100px !important;
+    height: 100px !important;
+
+    .k-info {
+      top: 20px !important;
+    }
+  }
+}
+
+/*
+    peresonenwagen css
+*/
+.cars-personen {
+  margin: 50px auto 100px auto;
+  > .row > div{
+    width:100% !important;
+  }
+  .views-view-grid > .views-row{
+    width:100% !important;
+  }
+  .views-field-field-pw-mieten,
+  .views-field-field-infos,
+  .views-field-field-lieferwagen-pw-mieten,
+  .views-field-field-lieferwagen-infos,
+  .views-field-field-cr-pw-mieten,
+  .views-field-field-cr-infos,
+  .views-field-field-anhanger-pw-mieten,
+  .views-field-field-anhanger-infos,
+  .views-field-field-personenbusse-pw-mieten,
+  .views-field-field-personenbusse-infos{
+    width:48%;
+    a{
+      color:white;
+      text-decoration:none;
+      font-size:15px;
+    }
+  }
+  .views-field-field-pw-mieten,
+  .views-field-field-personenbusse-pw-mieten,
+  .views-field-field-cr-pw-mieten,
+  .views-field-field-anhanger-pw-mieten,
+  .views-field-field-lieferwagen-pw-mieten{
+    margin:0 1% 0 0 !important;
+    float:left;
+  }
+  .views-field-field-infos,
+  .views-field-field-personenbusse-infos,
+  .views-field-field-cr-infos,
+  .views-field-field-anhanger-infos,
+  .views-field-field-lieferwagen-infos{
+    margin:0 0 0 1% !important;
+    float:right;
+  }
+  .views-field-field-model,
+  .views-field-field-personenbusse-model,
+  .views-field-field-cr-model,
+  .views-field-field-anhanger-model,
+  .views-field-field-lieferwagen-model{
+    height:100px;
+    overflow-y: auto;
+  }
+  .views-field-title,
+  .views-field-personenbusse-title,
+  .views-field-cr-title,
+  .views-field-anhangeranhanger-title,
+  .views-field-field-lieferwagen-title{
+    height:80px;
+  }
+  .car-p{
+    margin-right:1% !important;
+    float:left;
+    margin-top: 50px;
+    padding: 25px;
+    img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    p {
+      margin:0;
+    }
+
+    h4 {
+      margin: 35px 0;
+    }
+
+    .cp-info {
+      margin-top: 10px;
+      color: #404e56;
+      width: 20%;
+      margin-right: 2%;
+      margin-left:2%;
+      float: left;
+      >div{
+        //display:inline;
+        &:before{
+          content: " ";
+          background-size: 122px;
+          padding:0 10px;
+          display:inline;
+          font-family: "Font Awesome 5 Free";
+          font-weight: 900;
+          top:0;
+          left:-5px;
+        }
+      }
+      &.ci1 >div:before{
+        background-image: url(../images/icons.png);
+        background-position: 0 -269px;
+      }
+      &.ci2 >div:before{
+        background-image: url(../images/icons.png);
+        background-position:0 -396px;
+      }
+      &.ci3 >div:before{
+        background-image: url(../images/icons.png);
+        background-position: 0 -332px;
+      }
+      &.ci4 >div:before{
+        background-image: url(../images/icons.png);
+        background-position: 0 -300px;
+      }
+      &.ci5 >div:before{
+        content:'\f192';
+        padding:0;
+      }
+      i,
+      span {
+        cursor: pointer;
+      }
+
+      i {
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+/*
+    about content
+*/
+.about-content {
+  margin: 70px auto;
+}
+
+.timeline-container {
+  margin-bottom: 60px;
+
+  .timeline__content {
+    h2 {
+      margin-top: 15px;
+    }
+  }
+}
+
+.lSPager.lSGallery {
+  margin: 10px !important;
+}
+
+#autoBoxModal {
+  .close {
+    position: absolute;
+    left: 10px;
+    top: 2px;
+    font-size: 30px;
+    z-index: 99999;
+    text-shadow: 0 0px 2px #fff;
+  }
+
+  .modal-body {
+    padding: 0;
+  }
+
+  .spinner {
+    font-size: 50px;
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  .car,
+  .views-row {
+    width: 100% !important;
+  }
+  .car-p{
+    width: 100% !important;
+  }
+  .slider-txt-left {
+    h1,
+    h6 {
+      font-size: 15px !important;
+    }
+  }
+
+  .cars {
+    .car {
+      height: 650px;
+
+      img {
+        height: 350px !important;
+      }
+    }
+  }
+
+  .carousel.slide.first-slide {
+    max-height: 650px !important;
+
+    * {
+      max-height: 650px !important;
+    }
+  }
+}
+
+.normal-weight {
+  font-weight: normal !important;
+}
+
+/**
+* This css was added after started implementing drupal
+*/
+#block-find-vehicle-txt {
+  .quickedit-field {
+    p {
+      margin-bottom: 0;
+    }
+  }
+}
+div.img-fluid{
+  img{
+    max-width:100% !important;
+  }
+}
+
+#contactForm{
+  .js-form-item{
+    width:50%;
+    float:left;
+  }
+}
+nav.navbar{
+  max-height:100px;
+}
+.navbar-expand-lg .navbar-collapse{
+  visibility:hidden;
+}
+.dropdown-menu{
+  >li{
+    padding-top:0 !important;
+    p{
+      display:none;
+    }
+  }
+}

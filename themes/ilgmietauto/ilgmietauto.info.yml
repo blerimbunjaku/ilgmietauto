@@ -1,0 +1,18 @@
+name: ilgmietauto
+type: theme
+description: A custom theme for the awesomeness which is ardit.
+core: 8.x
+base theme: stable
+version: 8.x-1.0
+libraries:
+  - ilgmietauto/global-styling
+regions:
+  before_header: 'Before Header'
+  header: Header
+  main_nav: 'Main Navigation'
+  slider: Slider
+  content: Content
+  block_contents: 'Block Contents'
+  under_content: 'Under Content'
+  homepage_bottom_slider: 'Homepage bottom slider'
+  footer: Footer

@@ -1,0 +1,114 @@
+{% include directory ~ '/includes/region--header.html.twig' %}
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+<script>var widgetId1;</script>
+
+<section class="k-map">
+    <div id="map"></div>
+</section>
+<section class="map-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-4 k-info-parent">
+                <div class="k-info">
+                    <h3>Ilgauto AG</h3>
+                    <p>
+                        <strong>{{ page.before_header.address }}</strong>
+                    </p>
+                        <div class="row">
+                            <div class="col-4"><strong>Tel: </strong></div>
+                            <div class="col-8"><strong>{{ page.before_header.phone }}</strong></div>
+                        </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-4"><strong>Fax: </strong></div>
+                        <div class="col-8"><strong>{{ page.before_header.phone }}</strong></div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-4"><strong>E-Mail: </strong></div>
+                        <div class="col-8"><strong>{{ page.before_header.email }}</strong></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4 k-info-parent">
+                <div class="k-info">
+                    <h3>Öffnungszeiten</h3>
+                    <div class="row">
+                        <div class="col-md-12 col-lg-6 mwt text-right"><strong>Montag-Samstag:</strong></div>
+                        <div class="col-md-12 col-lg-6">
+                            {{ page.under_content.open_close_hours }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-mg-12 col-lg-6 mwt text-right"><strong>Sonntag:</strong></div>
+                        <div class="col-mg-12 col-lg-6">{{ page.under_content.sonntag_work }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4 k-info-parent">
+                <div class="k-info">
+                    <a href="javascript:void(0)" class="btn site-btn btn-block"><i class="fas fa-map-marked-alt"></i>
+                        Route</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="k-kontakt">
+    <div class="container">
+        <h1>Haben Sie Fragen?</h1>
+        <p>Gerne beantworten wir Ihre Fragen !</p>
+        {{ page.content }}
+        <div id="cFormElements">
+            <div class="form-group">
+                <div class="g-recaptcha" id="recaptcha"></div>
+                <p class="err-msg"><span class="text-danger">Enter recaptcha</span></p>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <button class="btn btn-primary btn-block senden-btn" id="kfs"><i class="fas fa-check"></i>
+                            Senden</button>
+                        <button class="d-none" type="submit"></button>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <button class="btn btn-secondary btn-block abrechen-btn"><i class="fa fa-times"></i>
+                            Abrechen</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% include directory ~ '/includes/region--footer.html.twig' %}
+<script>
+    // Initialize and add the map
+    function initMap() {
+        // The location of Uluru
+        var uluru = {
+            lat: 47.551960,
+            lng: 8.867260
+        };
+        // The map, centered at Uluru
+        var map = new google.maps.Map(
+            document.getElementById('map'), {
+                zoom: 18,
+                center: uluru
+            });
+        // The marker, positioned at Uluru
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+        });
+    }
+    var onloadCallback = function () {
+        // Renders the HTML element with id 'example1' as a reCAPTCHA widget.
+        // The id of the reCAPTCHA widget is assigned to 'widgetId1'.
+        widgetId1 = grecaptcha.render('recaptcha', {
+            'sitekey': '6LdmtnQUAAAAAE4eCHrf7m0Z7EcarA_cwUEIKh2t',
+            'theme': 'light'
+        });
+    }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6X3gleUX61dylLbUqjeF6TgEAF9Rk8ZE&callback=initMap">
+</script>

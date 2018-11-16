@@ -1,0 +1,219 @@
+{% if logged_in %}
+
+    {% set btn_text = 'My Profile' %}
+
+{% else %}
+
+    {% set btn_text = 'Log in / Join' %}
+
+{% endif %}
+{% include directory ~ '/includes/region--header.html.twig' %}
+{% include directory ~ '/includes/frontpage-slider.html.twig' %}
+<section class="af-header">
+    <div class="container">
+        <h2 class="text-left">Mietwagen in der Ostschweiz</h2>
+        <h6 class="text-left">Seit über 50 Jahren zuverlässig und günstig</h6>
+    </div>
+</section>
+<div class="layout-container">
+    <main role="main">
+        <section class="cars">
+            <div class="container">
+                {#{{ dump(content.field_subtitle['#items']) }}#}
+                {{ page.content }}
+                <div class="clear"></div>
+            </div>
+        </section>
+
+    </main>
+    <section class="icons-container">
+        <div class="container text-center">
+            {{ page.under_content.find_vehicle_txt }}
+            <div class="icons">
+                <div class="row">
+                    <div class="col-sm-12 col-md-4 col-lg-3 text-center">
+                        <div class="icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        {{ page.under_content.suchen_content }}
+                    </div>
+                    <div class="col-sm-12 col-sm-0 col-md-4 col-md-0 col-lg-1 line text-center"></div>
+                    <div class="col-sm-12 col-md-4 col-lg-4 text-center">
+                        <div class="icon">
+                            <i class="fas fa-check-square"></i>
+                        </div>
+                        {{ page.under_content.buchen_content }}
+                    </div>
+                    <div class="col-sm-12 col-sm-0 col-md-4 col-md-0 col-lg-1 line text-center"></div>
+                    <div class="col-sm-12 col-md-4 col-lg-3 text-center">
+                        <div class="icon">
+                            <i class="fas fa-thumbs-up"></i>
+                        </div>
+                        {{ page.under_content.losfahren_content }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="news-container">
+        <div class="container text-center">
+            <h3>News rund um</h3>
+            <h5>Aktuelle Angebote, Tipps und Tricks und vieles mehr...</h5>
+            <a href="javascript:void(0)" class="btn site-btn site-btn-outline">Mehr News</a>
+        </div>
+        <div class="banner">
+            <div id="newsSlider" class="carousel slide" data-ride="carousel" data-interval="false">
+
+                <!-- Indicators -->
+                <ul class="carousel-indicators ci-desk">
+                    <li data-target="#newsSlider" data-slide-to="0" class="active"></li>
+                    <li data-target="#newsSlider" data-slide-to="1"></li>
+                    <li data-target="#newsSlider" data-slide-to="2"></li>
+                </ul>
+                <ul class="carousel-indicators ci-mobile">
+                    <a class="ns-arrow" data-dir="left" href="javascript:void(0)"><i class="fas fa-arrow-left"></i></a>
+                    <a class="ns-arrow" data-dir="right" href="javascript:void(0)"><i class="fas fa-arrow-right"></i></a>
+                </ul>
+
+                <!-- The slideshow -->
+                <div class="carousel-inner second-slider d-md-block ">
+                    <div class="carousel-item active">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-8 offset-sm-2 col-md-8 offset-md-2 col-lg-4 offset-lg-0">
+                                <div class="s2-item">
+                                    <div class="row">
+                                        <div class="col-5 img-s2"></div>
+                                        <div class="col-7">
+                                            <div class="s2-item-content">
+                                                {{ page.homepage_bottom_slider.item_1 }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-8 offset-sm-2 col-md-8 offset-md-2 col-lg-4 offset-lg-0">
+                                <div class="s2-item">
+                                    <div class="row">
+                                        <div class="col-5 img-s2"></div>
+                                        <div class="col-7">
+                                            <div class="s2-item-content">
+                                                {{ page.homepage_bottom_slider.item_1 }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-8 offset-sm-2 col-md-8 offset-md-2 col-lg-4 offset-lg-0">
+                                <div class="s2-item">
+                                    <div class="row">
+                                        <div class="col-5 img-s2"></div>
+                                        <div class="col-7">
+                                            <div class="s2-item-content">
+                                                {{ page.homepage_bottom_slider.item_1 }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-8 offset-sm-2 col-md-8 offset-md-2 col-lg-4 offset-lg-0">
+                                <div class="s2-item">
+                                    <div class="row">
+                                        <div class="col-5 img-s2"></div>
+                                        <div class="col-7">
+                                            <div class="s2-item-content">
+                                                {{ page.homepage_bottom_slider.item_1 }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-8 offset-sm-2 col-md-8 offset-md-2 col-lg-4 offset-lg-0">
+                                <div class="s2-item">
+                                    <div class="row">
+                                        <div class="col-5 img-s2"></div>
+                                        <div class="col-7">
+                                            <div class="s2-item-content">
+                                                {{ page.homepage_bottom_slider.item_1 }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-8 offset-sm-2 col-md-8 offset-md-2 col-lg-4 offset-lg-0">
+                                <div class="s2-item">
+                                    <div class="row">
+                                        <div class="col-5 img-s2"></div>
+                                        <div class="col-7">
+                                            <div class="s2-item-content">
+                                                {{ page.homepage_bottom_slider.item_1 }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-8 offset-sm-2 col-md-8 offset-md-2 col-lg-4 offset-lg-0">
+                                <div class="s2-item">
+                                    <div class="row">
+                                        <div class="col-5 img-s2"></div>
+                                        <div class="col-7">
+                                            <div class="s2-item-content">
+                                                {{ page.homepage_bottom_slider.item_1 }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-8 offset-sm-2 col-md-8 offset-md-2 col-lg-4 offset-lg-0">
+                                <div class="s2-item">
+                                    <div class="row">
+                                        <div class="col-5 img-s2"></div>
+                                        <div class="col-7">
+                                            <div class="s2-item-content">
+                                                {{ page.homepage_bottom_slider.item_1 }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-8 offset-sm-2 col-md-8 offset-md-2 col-lg-4 offset-lg-0">
+                                <div class="s2-item">
+                                    <div class="row">
+                                        <div class="col-5 img-s2"></div>
+                                        <div class="col-7">
+                                            <div class="s2-item-content">
+                                                {{ page.homepage_bottom_slider.item_1 }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Left and right controls -->
+                <a class="carousel-control-prev" href="#newsSlider" data-slide="prev">
+                    <span class="arrow">
+                        <span class="fas fa-arrow-left"></span>
+                    </span>
+                </a>
+                <a class="carousel-control-next" href="#newsSlider" data-slide="next">
+                    <span class="arrow">
+                        <span class="fas fa-arrow-right"></span>
+                    </span>
+                </a>
+
+            </div>
+        </div>
+    </section>
+</div>{# /.layout-container #}
+
+{%  include directory ~ '/includes/region--footer.html.twig'  %}

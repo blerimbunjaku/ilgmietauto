@@ -1,0 +1,18 @@
+global-styling:
+  version: 1.x
+  css:
+    theme:
+      css/bootstrap.min.css: {}
+      css/all.min.css: {}
+      css/lightslider.min.css: {}
+      css/timeline.min.css: {}
+      css/app.css: {}
+  js:
+    js/popper.min.js: {}
+    js/bootstrap.min.js: {}
+    js/lightslider.js: {}
+    js/timeline.min.js: {}
+    js/listeners.js: {}
+    js/app.js: {}
+  dependencies:
+    - core/jquery
