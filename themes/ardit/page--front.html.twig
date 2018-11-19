@@ -215,5 +215,74 @@
         </div>
     </section>
 </div>{# /.layout-container #}
-
+<section class="map-container">
+    <div class="container">
+        <h3>Ihre Autovermietung Ilgauto in der Ostschweiz</h3>
+        <h5>Gerne beraten wir Sie auch vor Ort.</h5>
+        <br><br>
+        <div class="row">
+            <div class="col-sm-12 col-md-7 map-p">
+                <div id="map"></div>
+            </div>
+            <div class="col-sm-12 col-md-5">
+                <h6>Ilgauto AG</h6>
+                <p>
+                    <strong>{{ page.before_header.address }}</strong>
+                </p>
+                <div class="row no-lh">
+                    <div class="col-4 col-md-3"><strong>Tel: </strong></div>
+                    <div class="col-8 col-md-9"><strong>{{ page.before_header.phone }}</strong></div>
+                </div>
+                <br>
+                <div class="row no-lh">
+                    <div class="col-4 col-md-3"><strong>Fax: </strong></div>
+                    <div class="col-8 col-md-9"><strong>{{ page.before_header.phone }}</strong></div>
+                </div>
+                <br>
+                <div class="row no-lh">
+                    <div class="col-4 col-md-3"><strong>E-Mail: </strong></div>
+                    <div class="col-8 col-md-9"><strong>{{ page.before_header.email }}</strong></div>
+                </div>
+                <br>
+                <h3>Öffnungszeiten</h3>
+                <div class="row">
+                    <div class="col-md-12 col-lg-6 mwt text-right"><strong>Montag-Samstag:</strong></div>
+                    <div class="col-md-12 col-lg-6">
+                        {{ page.under_content.open_close_hours }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-mg-12 col-lg-6 mwt text-right"><strong>Sonntag:</strong></div>
+                    <div class="col-mg-12 col-lg-6">{{ page.under_content.sonntag_work }}</div>
+                </div>
+                <br>
+                {#<a href="javascript:void(0)" class="btn site-btn btn-block">Route</a>#}
+                {{ page.under_content.kontakt_route_button }}
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    // Initialize and add the map
+    function initMap() {
+        // The location of Uluru
+        var uluru = {
+            lat: 47.551960,
+            lng: 8.867260
+        };
+        // The map, centered at Uluru
+        var map = new google.maps.Map(
+            document.getElementById('map'), {
+                zoom: 18,
+                center: uluru
+            });
+        // The marker, positioned at Uluru
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+        });
+    }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6X3gleUX61dylLbUqjeF6TgEAF9Rk8ZE&callback=initMap">
+</script>
 {%  include directory ~ '/includes/region--footer.html.twig'  %}

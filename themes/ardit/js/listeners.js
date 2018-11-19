@@ -25,6 +25,8 @@ class Listeners {
             this.setActiveMenu();
             this.addImageFromSlider();
             this.autoBoxSlider();
+            this.prependRouteIcon();
+            this.faqAccordions();
         });
     }
 
@@ -142,11 +144,11 @@ class Listeners {
 
     tabClick() {
         const _this = this;
-        this.dom.tabs.find('.tab-link').on('click', function () {
+        this.dom.tabs.on('click','.tab-link', function () {
             const link = jQuery(this);
             const arrow = link.find('.tl-arrow');
-            _this.dom.preise.find('.tl-arrow').removeClass('fa-arrow-down').addClass('fa-arrow-right');
-            _this.dom.preise.find('.tab-content').slideUp();
+            _this.dom.tabs.find('.tl-arrow').removeClass('fa-arrow-down').addClass('fa-arrow-right');
+            _this.dom.tabs.find('.tab-content').slideUp();
             const tabContent = jQuery(this).next();
             if (tabContent.css('display') == 'none') {
                 tabContent.slideToggle('fast', function () {
@@ -194,6 +196,33 @@ class Listeners {
                 modalBody.show();
             }, 1000);
         });
+    }
+
+    prependRouteIcon(){
+        const kontaktInfo = this.dom.kontakt.prev();
+        kontaktInfo.find('.route-btn a.site-btn').prepend('<i class="fas fa-map-marked-alt"></i>');
+    }
+
+    // FAQ
+    faqAccordions(){
+        if(!this.path.includes('faq')){
+            return;
+        }
+        const items = Array.from(this.dom.faq.find('.faq-item'));
+        const faqAccordions = this.dom.faq.find('.faq-accordions');
+        let template = '';
+        items.forEach(item => {
+            let title = jQuery(item).find('.faq-item-title').html().trim();
+            let content = jQuery(item).find('.faq-item-content').html().trim();
+            template = `
+                <div class="tab-link">
+                    <p>${title}</p>
+                    <i class="fas tl-arrow fa-arrow-right"></i>
+                </div>
+                <div class="tab-content">${content}</div>
+            ` + template;
+        });
+        faqAccordions.html(template);
     }
 
     /**

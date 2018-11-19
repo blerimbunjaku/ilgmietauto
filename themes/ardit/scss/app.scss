@@ -600,10 +600,7 @@ footer.footer {
 .about-bg {
   background-image: url(../images/about-bg.png);
 }
-
-.preise-content {
-  margin: 100px auto;
-
+.tabs{
   .tab-link {
     background: $mainColor;
     padding: 7px 10px;
@@ -631,7 +628,9 @@ footer.footer {
     display: none;
     padding: 15px;
   }
-
+}
+.preise-content {
+  margin: 100px auto;
   table {
     * {
       font-weight: bold;
@@ -1067,5 +1066,70 @@ nav.navbar{
     p{
       display:none;
     }
+  }
+}
+.no-lh{
+  line-height:0;
+}
+
+/*
+  flottenmieten container
+*/
+.flottenmieten-container{
+  margin:50px auto;
+  .car-item{
+    margin-bottom:20px;
+    padding-bottom: 20px;
+    border-bottom:1px solid #ccc;
+    p{
+      margin:0;
+    }
+    img{
+      margin-top:10px;
+    }
+  }
+}
+.verkehrsbussen-container{
+  margin:50px auto;
+  .vers-images{
+    a{
+      width:25%;
+      display:inline-block;
+      img{
+        margin:0 auto;
+      }
+    }
+  }
+  ul{
+    list-style-type: circle;
+    li{
+      margin-bottom:10px;
+    }
+  }
+  .vers-table{
+    padding:10px;
+    border: 1px solid black;
+    width:90%;
+    margin:0 auto;
+    table{
+      width:100%;
+      thead{
+        //background:#d3d3d3;
+      }
+    }
+  }
+}
+
+/*
+  FAQ container
+*/
+.faq-container{
+  margin-top:120px;
+  margin-bottom:50px;
+  .faq-d-none{
+    display:none;
+  }
+  .faq-accordions{
+    margin-top:50px;
   }
 }

@@ -527,10 +527,7 @@ footer.footer .f-cols {
   background-image: url(../images/about-bg.png);
 }
 
-.preise-content {
-  margin: 100px auto;
-}
-.preise-content .tab-link {
+.tabs .tab-link {
   background: #005197;
   padding: 7px 10px;
   border-radius: 5px;
@@ -540,19 +537,23 @@ footer.footer .f-cols {
   margin-top: 5px;
   position: relative;
 }
-.preise-content .tab-link p {
+.tabs .tab-link p {
   margin-bottom: 0;
 }
-.preise-content .tab-link .tl-arrow {
+.tabs .tab-link .tl-arrow {
   position: absolute;
   z-index: 9999;
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
 }
-.preise-content .tab-content {
+.tabs .tab-content {
   display: none;
   padding: 15px;
+}
+
+.preise-content {
+  margin: 100px auto;
 }
 .preise-content table * {
   font-weight: bold;
@@ -939,6 +940,67 @@ nav.navbar {
 }
 .dropdown-menu > li p {
   display: none;
+}
+
+.no-lh {
+  line-height: 0;
+}
+
+/*
+  flottenmieten container
+*/
+.flottenmieten-container {
+  margin: 50px auto;
+}
+.flottenmieten-container .car-item {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+}
+.flottenmieten-container .car-item p {
+  margin: 0;
+}
+.flottenmieten-container .car-item img {
+  margin-top: 10px;
+}
+
+.verkehrsbussen-container {
+  margin: 50px auto;
+}
+.verkehrsbussen-container .vers-images a {
+  width: 25%;
+  display: inline-block;
+}
+.verkehrsbussen-container .vers-images a img {
+  margin: 0 auto;
+}
+.verkehrsbussen-container ul {
+  list-style-type: circle;
+}
+.verkehrsbussen-container ul li {
+  margin-bottom: 10px;
+}
+.verkehrsbussen-container .vers-table {
+  padding: 10px;
+  border: 1px solid black;
+  width: 90%;
+  margin: 0 auto;
+}
+.verkehrsbussen-container .vers-table table {
+  width: 100%;
+}
+/*
+  FAQ container
+*/
+.faq-container {
+  margin-top: 120px;
+  margin-bottom: 50px;
+}
+.faq-container .faq-d-none {
+  display: none;
+}
+.faq-container .faq-accordions {
+  margin-top: 50px;
 }
 
 /*# sourceMappingURL=app.css.map */

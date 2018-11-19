@@ -30,7 +30,7 @@ class DOM {
          * NEW CONTAINER
          */
         this.preise = jQuery('.preise-content');
-        this.tabs = this.preise.find('.tabs');
+        this.tabs = jQuery('.tabs');
         /**
          * NEWS-CONTAINER-END
          */
@@ -61,6 +61,13 @@ class DOM {
         this.timeline = jQuery('.timeline');
         /**
          * uber uns end
+         */
+        /**
+         * FAQ start
+         */
+        this.faq = jQuery('.faq-container');
+        /**
+         * FAQ end
          */
         /**
          * Modals
