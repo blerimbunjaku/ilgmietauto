@@ -15,8 +15,48 @@
                     <h6>{{ page.slider.header_subtitle }}</h6>
                 </div>
                 <div class="col-md-12 col-lg-5 col-xl-5 text-right slider-right">
-                    <iframe class="h-frame" scrolling="no" src="https://kunden2.cx9.de/ilg/reservierung_rd/"
-                            frameborder="0"></iframe>
+                    {#<iframe class="h-frame" scrolling="no" src="https://kunden2.cx9.de/ilg/reservierung_rd/"#}
+                            {#frameborder="0"></iframe>#}
+                    <div class="frame-module">
+                        <form action="#">
+                            <h5>Abholstation</h5>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupPrepend"><i class="fas fa-map-marker-alt"></i></span>
+                                    </div>
+                                    <input type="text" name="place" value="ilgauto ag" class="form-control" aria-describedby="inputGroupPrepend" required readonly>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="abfahrtDatum">Abfahrt (Datum)</label>
+                                        <input id="abfahrtDatum" name="abfahrt_datum" class="datepicker form-control">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="abfahrtUhrzeit">Abfahrt (Uhrzeit)</label>
+                                        <input id="abfahrtUhrzeit" name="abfahrt_uhrzeit" data-type="startTime" class="timepicker form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="ruckgabeDatum">Rückgabe (Datum)</label>
+                                        <input id="ruckgabeDatum" name="ruckgabe_datum" class="datepicker form-control">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="ruckgabeUhrzeit">Rückgabe (Uhrzeit)</label>
+                                        <input id="ruckgabeUhrzeit" name="ruckgabe_uhrzeit" date-type="endTime" class="timepicker form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <a href="" class="text-center btn site-btn btn-block frame-btn">Preis ermitteln</a>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

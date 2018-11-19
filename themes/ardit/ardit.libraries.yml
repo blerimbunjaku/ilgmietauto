@@ -3,6 +3,7 @@ global-styling:
   css:
     theme:
       css/bootstrap.min.css: {}
+      css/datepicker.min.css: {}
       css/all.min.css: {}
       css/lightslider.min.css: {}
       css/timeline.min.css: {}
@@ -10,6 +11,7 @@ global-styling:
   js:
     js/popper.min.js: {}
     js/bootstrap.min.js: {}
+    js/datepicker.min.js: {}
     js/lightslider.js: {}
     js/timeline.min.js: {}
     js/listeners.js: {}

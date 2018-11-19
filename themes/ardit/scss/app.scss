@@ -1133,3 +1133,28 @@ nav.navbar{
     margin-top:50px;
   }
 }
+
+/**
+  Home slider iFrame module
+*/
+.frame-module{
+  box-shadow:0 -15px 0 0 $mainColor;
+  padding:20px 10px 10px 10px;
+  background:white;
+  margin:-35px auto 0 auto;
+  max-width:400px;
+  .site-btn{
+    color:white;
+  }
+  .form-control{
+    box-shadow:none;
+    outline:none;
+  }
+  *{
+    text-align:left;
+    color:black;
+  }
+  label{
+    font-size:12px;
+  }
+}

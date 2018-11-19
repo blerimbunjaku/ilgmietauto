@@ -27,6 +27,7 @@ class Listeners {
             this.autoBoxSlider();
             this.prependRouteIcon();
             this.faqAccordions();
+            this.initDatetimePickers();
         });
     }
 
@@ -37,6 +38,28 @@ class Listeners {
             image.classList.add('img-fluid');
             image.src = jQuery(car).find('.slider-images img').first().attr('src');
             car.prepend(image);
+        });
+    }
+
+    initDatetimePickers(){
+        const today = new Date();
+        const tomorrow = new Date(today.setDate(today.getDate() + 1));
+        const datepickers = Array.from(this.dom.slider.find('.datepicker'));
+        const timepickers = Array.from(this.dom.slider.find('.timepicker'));
+        datepickers.forEach(dt => {
+           dt.value = `${tomorrow.getDate()}.${tomorrow.getMonth()}.${tomorrow.getFullYear()}`;
+        });
+        timepickers.forEach(tp => {
+           if(tp.dataset['type'] === 'startTime'){
+                tp.value = '07:30';
+           }else{
+               tp.value = '17:30';
+           }
+        });
+        jQuery('.datepicker').datepicker({
+            date: today,
+            startDate: today,
+            format: 'dd.mm.yyyy'
         });
     }
 

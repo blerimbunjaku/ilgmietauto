@@ -34,7 +34,13 @@ class DOM {
         /**
          * NEWS-CONTAINER-END
          */
-
+        /**
+         * main slider
+         */
+        this.slider = jQuery('#slider');
+        /**
+         * main slider - end
+         */
         /**
          * NEW CONTAINER
          */
