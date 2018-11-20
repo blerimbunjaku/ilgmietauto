@@ -92,16 +92,16 @@ class Listeners {
             form.find('.form-control').each(function(){
                 let name = jQuery(this).attr('name');
                 if(name === 'abfahrt_datum'){
-                    date.start = _this._createDateFromGermanFormat(jQuery(this).val());
+                    date.start = _this._createDateFromGermanFormat(jQuery(this).val(), jQuery(this).closest('.row').find('.timepicker').val());
                 }else if(name === 'ruckgabe_datum'){
-                    date.end = _this._createDateFromGermanFormat(jQuery(this).val());
+                    date.end = _this._createDateFromGermanFormat(jQuery(this).val(), jQuery(this).closest('.row').find('.timepicker').val());
                 }
                 if(jQuery(this).val().trim() === ''){
                     validate = false;
                 }
             });
-            if(date.start > date.end){
-                _this.dom.slider.find('.error-msg').text('Der Mietbeginn liegt außerhalb der Öffnungszeiten!');
+            if(date.start >= date.end){
+                _this.dom.slider.find('.error-msg').text('Abfahrt kann nicht größer sein als Rückgabe.');
                 return;
             }
             if(validate){
@@ -372,9 +372,12 @@ class Listeners {
         return data;
     }
 
-    _createDateFromGermanFormat(dateInput){
-        const date = dateInput.split('.');
+    _createDateFromGermanFormat(dateInput, timeInput = false){
+        let date = dateInput.split('.');
         date.reverse();
+        if(timeInput){
+            date = [...date, ...timeInput.split(':')];
+        }
         return new Date(...date);
     }
 
