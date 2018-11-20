@@ -45,16 +45,28 @@ class Listeners {
 
     initDatetimePickers(){
         const today = new Date();
-        const tomorrow = new Date(today.setDate(today.getDate() + 1));
+        const _this = this;
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        const twoDays = new Date();
+        twoDays.setDate(tomorrow.getDate() + 1);
         const datepickers = Array.from(this.dom.slider.find('.datepicker'));
         const timepickers = Array.from(this.dom.slider.find('.timepicker'));
         datepickers.forEach(dt => {
-           dt.value = `${tomorrow.getDate()}.${tomorrow.getMonth()}.${tomorrow.getFullYear()}`;
+           if(dt.getAttribute('name') === 'abfahrt_datum'){
+               dt.value = `${tomorrow.getDate()}.${tomorrow.getMonth()+1}.${tomorrow.getFullYear()}`;
+               jQuery(dt).on('change', function(){
+                   const inputDate = _this._createDateFromGermanFormat(jQuery(this).val());
+                   inputDate.setDate(inputDate.getDate() + 1);
+               });
+           }else{
+               dt.value = `${twoDays.getDate()}.${twoDays.getMonth()+1}.${twoDays.getFullYear()}`;
+           }
            jQuery(dt).datepicker({
-               date: today,
-               startDate: today,
-               format: 'dd.mm.yyyy'
-           });
+                date: today,
+                startDate: dt.getAttribute('name') === 'abfahrt_datum' ? tomorrow : twoDays,
+                format: 'dd.mm.yyyy'
+            });
         });
         timepickers.forEach(tp => {
            if(tp.dataset['type'] === 'startTime'){
@@ -73,25 +85,31 @@ class Listeners {
         this.dom.slider.find('.frame-btn').on('click', function(){
             const form = jQuery(this).closest('form');
             let validate = true;
+            const date = {
+                start:'',
+                end:''
+            };
             form.find('.form-control').each(function(){
+                let name = jQuery(this).attr('name');
+                if(name === 'abfahrt_datum'){
+                    date.start = _this._createDateFromGermanFormat(jQuery(this).val());
+                }else if(name === 'ruckgabe_datum'){
+                    date.end = _this._createDateFromGermanFormat(jQuery(this).val());
+                }
                 if(jQuery(this).val().trim() === ''){
                     validate = false;
                 }
             });
-
+            if(date.start > date.end){
+                _this.dom.slider.find('.error-msg').text('Der Mietbeginn liegt außerhalb der Öffnungszeiten!');
+                return;
+            }
             if(validate){
+                _this.dom.slider.find('.error-msg').text('');
                 localStorage.setItem('frm',JSON.stringify(_this._objectifyForm(form)));
                 window.location.href = '/reservierung-rd';
             }
         });
-    }
-    _parseDateTime(dateInput,timeInput){
-        let date = dateInput.split('.');
-        // date[1] = parseInt(date[1]) - 1;
-        date.reverse();
-        date = [...date, ...timeInput.split(':')];
-        console.log(date);
-        return date;
     }
     addReservierungIframe(){
         if(!this.dom.reservierung){
@@ -106,7 +124,6 @@ class Listeners {
         form['endTimestamp'] = + new Date(...this._parseDateTime(form['ruckgabe_datum'], form['ruckgabe_uhrzeit']));
         localStorage.removeItem('frm');
         const src = `https://kunden2.cx9.de/ilg/reservierung_rd/cars&PHPSESSID=4qj01f6vodq3odn9lm37evmf24?startstation=001&endstation=001&region=&startdatetime=${form['startTimestamp']}&enddatetime=${form['endTimestamp']}&kategorie-select=&abholDatum=${form['abfahrt_datum']}&abholZeit=${form['abfahrt_uhrzeit']}&abgabeDatum=${form['ruckgabe_datum']}&abgabeZeit=${form['ruckgabe_uhrzeit']}`;
-        console.log(src);
         const iframe = document.createElement('iframe');
         const spinner = jQuery(_this.dom.reservierung).find('.frame-spinner');
         let pixels = window.innerHeight - _this.dom.header.height() - _this.dom.top.height();
@@ -353,6 +370,20 @@ class Listeners {
             data[element.name] = element.value;
         });
         return data;
+    }
+
+    _createDateFromGermanFormat(dateInput){
+        const date = dateInput.split('.');
+        date.reverse();
+        return new Date(...date);
+    }
+
+    _parseDateTime(dateInput,timeInput){
+        let date = dateInput.split('.');
+        // date[1] = parseInt(date[1]) - 1;
+        date.reverse();
+        date = [...date, ...timeInput.split(':')];
+        return date;
     }
 
     _timelineHTMLFix() { // this will return a promise, basically will be an async task
