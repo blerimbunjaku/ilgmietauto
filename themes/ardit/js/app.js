@@ -12,6 +12,7 @@ class DOM {
         /**
          * HEADER
          */
+        this.top = jQuery('.top-sec');
         this.header = jQuery('header');
         this.menu = this.header.find('nav.navbar');
         /**
@@ -74,6 +75,13 @@ class DOM {
         this.faq = jQuery('.faq-container');
         /**
          * FAQ end
+         */
+        /**
+         * reservierung start
+         */
+        this.reservierung = document.getElementById('reservierung');
+        /**
+         * reservierung end
          */
         /**
          * Modals

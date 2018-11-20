@@ -28,6 +28,8 @@ class Listeners {
             this.prependRouteIcon();
             this.faqAccordions();
             this.initDatetimePickers();
+            this.addReservierungIframe();
+            this.preisClick();
         });
     }
 
@@ -48,6 +50,11 @@ class Listeners {
         const timepickers = Array.from(this.dom.slider.find('.timepicker'));
         datepickers.forEach(dt => {
            dt.value = `${tomorrow.getDate()}.${tomorrow.getMonth()}.${tomorrow.getFullYear()}`;
+           jQuery(dt).datepicker({
+               date: today,
+               startDate: today,
+               format: 'dd.mm.yyyy'
+           });
         });
         timepickers.forEach(tp => {
            if(tp.dataset['type'] === 'startTime'){
@@ -55,11 +62,59 @@ class Listeners {
            }else{
                tp.value = '17:30';
            }
+           jQuery(tp).timepicker({
+               timeFormat: 'HH:mm'
+           });
         });
-        jQuery('.datepicker').datepicker({
-            date: today,
-            startDate: today,
-            format: 'dd.mm.yyyy'
+    }
+
+    preisClick(){
+        const _this = this;
+        this.dom.slider.find('.frame-btn').on('click', function(){
+            const form = jQuery(this).closest('form');
+            let validate = true;
+            form.find('.form-control').each(function(){
+                if(jQuery(this).val().trim() === ''){
+                    validate = false;
+                }
+            });
+
+            if(validate){
+                localStorage.setItem('frm',JSON.stringify(_this._objectifyForm(form)));
+                window.location.href = '/reservierung-rd';
+            }
+        });
+    }
+    _parseDateTime(dateInput,timeInput){
+        let date = dateInput.split('.');
+        date[1] = parseInt(date[1]) - 1;
+        date.reverse();
+        date = [...date, ...timeInput.split(':')];
+        console.log(date);
+        return date;
+    }
+    addReservierungIframe(){
+        if(!this.dom.reservierung){
+            return;
+        }
+        if(!localStorage.getItem('frm')){
+            history.back();
+        }
+        const _this = this;
+        const form = JSON.parse(localStorage.getItem('frm'));
+        form['startTimestamp'] = + new Date(...this._parseDateTime(form['abfahrt_datum'], form['abfahrt_uhrzeit']));
+        form['endTimestamp'] = + new Date(...this._parseDateTime(form['ruckgabe_datum'], form['ruckgabe_uhrzeit']));
+        localStorage.removeItem('frm');
+        const src = `https://kunden2.cx9.de/ilg/reservierung_rd/cars&PHPSESSID=4qj01f6vodq3odn9lm37evmf24?startstation=001&endstation=001&region=&startdatetime=${form['startTimestamp']}&enddatetime=${form['endTimestamp']}&kategorie-select=&abholDatum=${form['abfahrt_datum']}&abholZeit=${form['abfahrt_uhrzeit']}&abgabeDatum=${form['ruckgabe_datum']}&abgabeZeit=${form['ruckgabe_uhrzeit']}`;
+        const iframe = document.createElement('iframe');
+        const spinner = jQuery(_this.dom.reservierung).find('.frame-spinner');
+        let pixels = window.innerHeight - _this.dom.header.height() - _this.dom.top.height();
+        _this.dom.reservierung.style.height = pixels + 'px';
+        iframe.src = src;
+        this.dom.reservierung.appendChild(iframe);
+        iframe.addEventListener('load', function(){
+            spinner.hide();
+            jQuery(iframe).show();
         });
     }
 
@@ -288,6 +343,15 @@ class Listeners {
                 this.dom.newsSlider.html(this.oldCarouselTemplate);
             }
         }
+    }
+
+    _objectifyForm (formElement) {
+        const form = formElement.serializeArray();
+        const data = {};
+        form.forEach(element => {
+            data[element.name] = element.value;
+        });
+        return data;
     }
 
     _timelineHTMLFix() { // this will return a promise, basically will be an async task
