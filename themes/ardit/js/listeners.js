@@ -87,7 +87,7 @@ class Listeners {
     }
     _parseDateTime(dateInput,timeInput){
         let date = dateInput.split('.');
-        date[1] = parseInt(date[1]) - 1;
+        // date[1] = parseInt(date[1]) - 1;
         date.reverse();
         date = [...date, ...timeInput.split(':')];
         console.log(date);
@@ -106,6 +106,7 @@ class Listeners {
         form['endTimestamp'] = + new Date(...this._parseDateTime(form['ruckgabe_datum'], form['ruckgabe_uhrzeit']));
         localStorage.removeItem('frm');
         const src = `https://kunden2.cx9.de/ilg/reservierung_rd/cars&PHPSESSID=4qj01f6vodq3odn9lm37evmf24?startstation=001&endstation=001&region=&startdatetime=${form['startTimestamp']}&enddatetime=${form['endTimestamp']}&kategorie-select=&abholDatum=${form['abfahrt_datum']}&abholZeit=${form['abfahrt_uhrzeit']}&abgabeDatum=${form['ruckgabe_datum']}&abgabeZeit=${form['ruckgabe_uhrzeit']}`;
+        console.log(src);
         const iframe = document.createElement('iframe');
         const spinner = jQuery(_this.dom.reservierung).find('.frame-spinner');
         let pixels = window.innerHeight - _this.dom.header.height() - _this.dom.top.height();
