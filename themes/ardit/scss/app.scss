@@ -1161,8 +1161,11 @@ nav.navbar{
 .ui-timepicker-container.ui-timepicker-no-scrollbar.ui-timepicker-standard{
   z-index:99999 !important;
 }
-
+.headerPlaceholder{
+  background:red !important;
+}
 .reservierung-rd{
+  padding-top:82px;
   .frame-spinner{
     position:absolute;
     top:50%;

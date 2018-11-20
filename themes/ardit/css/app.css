@@ -1032,6 +1032,13 @@ nav.navbar {
   z-index: 99999 !important;
 }
 
+.headerPlaceholder {
+  background: red !important;
+}
+
+.reservierung-rd {
+  padding-top: 82px;
+}
 .reservierung-rd .frame-spinner {
   position: absolute;
   top: 50%;
