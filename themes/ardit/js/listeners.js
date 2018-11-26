@@ -34,7 +34,7 @@ class Listeners {
         });
     }
 
-    addImageFromSlider(){ // add the first image of slider as poster (personenwagen page)
+    addImageFromSlider() { // add the first image of slider as poster (personenwagen page)
         let cars = Array.from(this.dom.personenCars.find('.car-p'));
         cars.map(car => {
             let image = document.createElement('img');
@@ -44,22 +44,22 @@ class Listeners {
         });
     }
 
-    newsItems(){
+    newsItems() {
         let news = Array.from(this.dom.news.find('.views-row'));
         let template = ``;
         news = news.filter(item => {
             return jQuery(item).find('.news-image img').length > 0 && jQuery(item).remove();
         });
-        if(news.length > 3 && news.length < 7){
-            this.dom.newsSlider.find('.ci-desk li:nth-child(2)').css('display','inline-block');
-        }else if(news.length > 6){
-            this.dom.newsSlider.find('.ci-desk li:nth-child(2), .ci-desk li:nth-child(3)').css('display','inline-block');
+        if (news.length > 3 && news.length < 7) {
+            this.dom.newsSlider.find('.ci-desk li:nth-child(2)').css('display', 'inline-block');
+        } else if (news.length > 6) {
+            this.dom.newsSlider.find('.ci-desk li:nth-child(2), .ci-desk li:nth-child(3)').css('display', 'inline-block');
         }
         this.dom.news.removeClass('news-content');
         // news.reverse();
         let index = 0;
-        news.forEach((item,i) => {
-            if(i > 9){
+        news.forEach((item, i) => {
+            if (i > 9) {
                 return false;
             }
             let newsObj = {
@@ -68,7 +68,7 @@ class Listeners {
                 body: jQuery(item).find('.news-body').text().trim(),
                 mehr: jQuery(item).find('.news-mehr a').attr('href')
             }
-            if(index === 0){
+            if (index === 0) {
                 template += '<div class="carousel-item"><div class="row">'
             }
             template += `
@@ -88,7 +88,7 @@ class Listeners {
                             </div>
             `;
 
-            if(index++ === 2 || news.length - 1 === i){
+            if (index++ === 2 || news.length - 1 === i) {
                 template += '</div></div>';
                 index = 0;
             }
@@ -97,7 +97,8 @@ class Listeners {
         this.dom.newsSlider.find('.carousel-item').first().addClass('active');
     }
 
-    initDatetimePickers(){
+
+    initDatetimePickers() {
         const today = new Date();
         const _this = this;
         const tomorrow = new Date();
@@ -107,75 +108,76 @@ class Listeners {
         const datepickers = Array.from(this.dom.slider.find('.datepicker'));
         const timepickers = Array.from(this.dom.slider.find('.timepicker'));
         datepickers.forEach(dt => {
-           if(dt.getAttribute('name') === 'abfahrt_datum'){
-               dt.value = `${tomorrow.getDate()}.${tomorrow.getMonth()+1}.${tomorrow.getFullYear()}`;
-               jQuery(dt).on('change', function(){
-                   const inputDate = _this._createDateFromGermanFormat(jQuery(this).val());
-                   inputDate.setDate(inputDate.getDate() + 1);
-               });
-           }else{
-               dt.value = `${twoDays.getDate()}.${twoDays.getMonth()+1}.${twoDays.getFullYear()}`;
-           }
-           jQuery(dt).datepicker({
+            if (dt.getAttribute('name') === 'abfahrt_datum') {
+                dt.value = `${tomorrow.getDate()}.${tomorrow.getMonth() + 1}.${tomorrow.getFullYear()}`;
+                jQuery(dt).on('change', function () {
+                    const inputDate = _this._createDateFromGermanFormat(jQuery(this).val());
+                    inputDate.setDate(inputDate.getDate() + 1);
+                });
+            } else {
+                dt.value = `${twoDays.getDate()}.${twoDays.getMonth() + 1}.${twoDays.getFullYear()}`;
+            }
+            jQuery(dt).datepicker({
                 date: today,
                 startDate: dt.getAttribute('name') === 'abfahrt_datum' ? tomorrow : twoDays,
                 format: 'dd.mm.yyyy'
             });
         });
         timepickers.forEach(tp => {
-           if(tp.dataset['type'] === 'startTime'){
+            if (tp.dataset['type'] === 'startTime') {
                 tp.value = '07:30';
-           }else{
-               tp.value = '17:30';
-           }
-           jQuery(tp).timepicker({
-               timeFormat: 'HH:mm'
-           });
+            } else {
+                tp.value = '17:30';
+            }
+            jQuery(tp).timepicker({
+                timeFormat: 'HH:mm'
+            });
         });
     }
 
-    preisClick(){
+    preisClick() {
         const _this = this;
-        this.dom.slider.find('.frame-btn').on('click', function(){
+        this.dom.slider.find('.frame-btn').on('click', function () {
             const form = jQuery(this).closest('form');
             let validate = true;
             const date = {
-                start:'',
-                end:''
+                start: '',
+                end: ''
             };
-            form.find('.form-control').each(function(){
+            form.find('.form-control').each(function () {
                 let name = jQuery(this).attr('name');
-                if(name === 'abfahrt_datum'){
+                if (name === 'abfahrt_datum') {
                     date.start = _this._createDateFromGermanFormat(jQuery(this).val(), jQuery(this).closest('.row').find('.timepicker').val());
-                }else if(name === 'ruckgabe_datum'){
+                } else if (name === 'ruckgabe_datum') {
                     date.end = _this._createDateFromGermanFormat(jQuery(this).val(), jQuery(this).closest('.row').find('.timepicker').val());
                 }
-                if(jQuery(this).val().trim() === ''){
+                if (jQuery(this).val().trim() === '') {
                     validate = false;
                 }
             });
-            if(date.start >= date.end){
+            if (date.start >= date.end) {
                 _this.dom.slider.find('.error-msg').text('Abfahrt kann nicht größer sein als Rückgabe.');
                 return;
             }
-            if(validate){
+            if (validate) {
                 _this.dom.slider.find('.error-msg').text('');
-                localStorage.setItem('frm',JSON.stringify(_this._objectifyForm(form)));
+                localStorage.setItem('frm', JSON.stringify(_this._objectifyForm(form)));
                 window.location.href = '/reservierung-rd';
             }
         });
     }
-    addReservierungIframe(){
-        if(!this.dom.reservierung){
+
+    addReservierungIframe() {
+        if (!this.dom.reservierung) {
             return;
         }
-        if(!localStorage.getItem('frm')){
+        if (!localStorage.getItem('frm')) {
             history.back();
         }
         const _this = this;
         const form = JSON.parse(localStorage.getItem('frm'));
-        form['startTimestamp'] = + new Date(...this._parseDateTime(form['abfahrt_datum'], form['abfahrt_uhrzeit']));
-        form['endTimestamp'] = + new Date(...this._parseDateTime(form['ruckgabe_datum'], form['ruckgabe_uhrzeit']));
+        form['startTimestamp'] = +new Date(...this._parseDateTime(form['abfahrt_datum'], form['abfahrt_uhrzeit']));
+        form['endTimestamp'] = +new Date(...this._parseDateTime(form['ruckgabe_datum'], form['ruckgabe_uhrzeit']));
         localStorage.removeItem('frm');
         const src = `https://kunden2.cx9.de/ilg/reservierung_rd/cars&PHPSESSID=4qj01f6vodq3odn9lm37evmf24?startstation=001&endstation=001&region=&startdatetime=${form['startTimestamp']}&enddatetime=${form['endTimestamp']}&kategorie-select=&abholDatum=${form['abfahrt_datum']}&abholZeit=${form['abfahrt_uhrzeit']}&abgabeDatum=${form['ruckgabe_datum']}&abgabeZeit=${form['ruckgabe_uhrzeit']}`;
         const iframe = document.createElement('iframe');
@@ -184,33 +186,33 @@ class Listeners {
         _this.dom.reservierung.style.height = pixels + 'px';
         iframe.src = src;
         this.dom.reservierung.appendChild(iframe);
-        iframe.addEventListener('load', function(){
+        iframe.addEventListener('load', function () {
             spinner.hide();
             jQuery(iframe).show();
         });
     }
 
-    setActiveMenu(){
+    setActiveMenu() {
         const menu = this.dom.header.find('ul.navbar-nav').first();
         const current = this.path.indexOf('?') === 1 ?
-            this.path.substring(this.path.lastIndexOf('/')+1, this.path.indexOf('?')) : this.path.substr(this.path.lastIndexOf('/')+1);
+            this.path.substring(this.path.lastIndexOf('/') + 1, this.path.indexOf('?')) : this.path.substr(this.path.lastIndexOf('/') + 1);
         menu.find('.active').removeClass('active');
         const active = Array.from(menu.find('.nav-link')).filter(link => {
             return jQuery(link).attr('href').includes(current);
         })[0];
-        if(typeof active === 'undefined'){
+        if (typeof active === 'undefined') {
             return;
         }
-        if(active.closest('li.nav-item').querySelector('.dropdown-menu')){
+        if (active.closest('li.nav-item').querySelector('.dropdown-menu')) {
             active.classList.add('active');
             // jQuery(active).closest('li.nav-item').addClass('active');
             active.closest('li.nav-item').classList.add('active');
-        }else{
+        } else {
             active.parentNode.classList.add('active');
         }
     }
 
-    navbarFix(){
+    navbarFix() {
         const menu = this.dom.menu.find('ul.menu');
         const items = Array.from(menu.find('li.sf-depth-1'));
         items.map((item, index) => {
@@ -218,28 +220,28 @@ class Listeners {
             item.removeAttribute('id');
             item.classList.add('nav-item');
             jQuery(item).find('a').after('<p><span></span></p>').removeAttr('class id').addClass('nav-link');
-            if(index === 0){
+            if (index === 0) {
                 item.classList.add('active');
             }
-            if(item.childElementCount > 2){
+            if (item.childElementCount > 2) {
                 item.classList.add('dropdown');
                 jQuery(item).find('a.nav-link').first().addClass('dropdown-toggle');
                 jQuery(item).find('ul').removeAttr('class').addClass('dropdown-menu');
             }
             const firstNivelLink = item.children[0];
-            if(firstNivelLink.getAttribute('href') === '#' || firstNivelLink.getAttribute('href') === ""){
-                firstNivelLink.setAttribute('href','javascript:void(0)');
+            if (firstNivelLink.getAttribute('href') === '#' || firstNivelLink.getAttribute('href') === "") {
+                firstNivelLink.setAttribute('href', 'javascript:void(0)');
             }
         });
         const menuHTML = `<ul class="navbar-nav ml-auto">${this.dom.menu.find('ul.menu').html()}</ul>`;
-        jQuery(this.dom.menu.find('.navbar-collapse')).html(menuHTML).css('visibility','visible');
-        this.dom.menu.css('maxHeight','auto');
+        jQuery(this.dom.menu.find('.navbar-collapse')).html(menuHTML).css('visibility', 'visible');
+        this.dom.menu.css('maxHeight', 'auto');
     }
 
-    dropdownToggler(){
-        jQuery(document).on('click', '.dropdown-toggle', function(){
+    dropdownToggler() {
+        jQuery(document).on('click', '.dropdown-toggle', function () {
             const dropdown = jQuery(this).closest('.dropdown').find('.dropdown-menu');
-            if(dropdown.css('display') === 'block'){
+            if (dropdown.css('display') === 'block') {
                 dropdown.hide();
                 return;
             }
@@ -275,7 +277,7 @@ class Listeners {
     }
 
     newsSliderArrowsClick() {
-        this.dom.newsSlider.on('click','.ns-arrow', (e) => {
+        this.dom.newsSlider.find('.ns-arrow').on('click', (e) => {
             if (e.target.parentNode.dataset['dir'] === 'right') {
                 this.dom.newsSlider.find('.carousel-control-next').click();
             } else {
@@ -294,7 +296,7 @@ class Listeners {
 
     tabClick() {
         const _this = this;
-        this.dom.tabs.on('click','.tab-link', function () {
+        this.dom.tabs.on('click', '.tab-link', function () {
             const link = jQuery(this);
             const arrow = link.find('.tl-arrow');
             _this.dom.tabs.find('.tl-arrow').removeClass('fa-arrow-down').addClass('fa-arrow-right');
@@ -348,14 +350,14 @@ class Listeners {
         });
     }
 
-    prependRouteIcon(){
+    prependRouteIcon() {
         const kontaktInfo = this.dom.kontakt.prev();
         kontaktInfo.find('.route-btn a.site-btn').prepend('<i class="fas fa-map-marked-alt"></i>');
     }
 
     // FAQ
-    faqAccordions(){
-        if(!this.path.includes('faq')){
+    faqAccordions() {
+        if (!this.path.includes('faq')) {
             return;
         }
         const items = Array.from(this.dom.faq.find('.faq-item'));
@@ -417,7 +419,7 @@ class Listeners {
         }
     }
 
-    _objectifyForm (formElement) {
+    _objectifyForm(formElement) {
         const form = formElement.serializeArray();
         const data = {};
         form.forEach(element => {
@@ -426,16 +428,16 @@ class Listeners {
         return data;
     }
 
-    _createDateFromGermanFormat(dateInput, timeInput = false){
+    _createDateFromGermanFormat(dateInput, timeInput = false) {
         let date = dateInput.split('.');
         date.reverse();
-        if(timeInput){
+        if (timeInput) {
             date = [...date, ...timeInput.split(':')];
         }
         return new Date(...date);
     }
 
-    _parseDateTime(dateInput,timeInput){
+    _parseDateTime(dateInput, timeInput) {
         let date = dateInput.split('.');
         // date[1] = parseInt(date[1]) - 1;
         date.reverse();
@@ -450,14 +452,14 @@ class Listeners {
             const timelineItems = Array.from(timelineWrap.find('.timeline__content'));
             timelineItems.forEach(item => {
                 let timelineImg = jQuery(item).find('.timeline-img img').attr('src'),
-                    timelineYear = jQuery(item).find('.timeline-year').html(),
-                    timelineBody = jQuery(item).find('.timeline-body p').html();
+                    timelineYear = jQuery(item).find('.timeline-year').html();
+                // timelineBody = jQuery(item).find('.timeline-body p').html();
+                // <p>${timelineBody}</p>
                 template += `
                     <div class="timeline__item">
                             <div class="timeline__content">
                                 <img src="${timelineImg}" alt="" class="img-fluid">
                                 <h2>${timelineYear}</h2>
-                                <p>${timelineBody}</p>
                             </div>
                         </div>
                 `;
