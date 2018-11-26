@@ -1084,4 +1084,27 @@ nav.navbar {
   right: 20px;
 }
 
+.js-pager__items {
+  list-style-type: none;
+  padding: 0;
+  margin: 50px 0 0 0;
+}
+.js-pager__items li {
+  margin: 5px;
+  float: left;
+}
+.js-pager__items li a {
+  padding: 5px 10px;
+  border: 1px solid #005197;
+  color: #005197;
+}
+.js-pager__items li a:hover {
+  background: #005197;
+  color: white;
+}
+
+.navbar-brand {
+  display: none;
+}
+
 /*# sourceMappingURL=app.css.map */

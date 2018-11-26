@@ -1211,3 +1211,25 @@ nav.navbar{
   position:absolute;
   right:20px;
 }
+
+.js-pager__items{
+  list-style-type:none;
+  padding:0;
+  margin:50px 0 0 0;
+  li{
+    margin:5px;
+    float:left;
+    a{
+      padding:5px 10px;
+      border:1px solid $mainColor;
+      color: $mainColor;
+      &:hover{
+        background: $mainColor;
+        color:white;
+      }
+    }
+  }
+}
+.navbar-brand{
+  display:none;
+}
