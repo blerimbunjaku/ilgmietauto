@@ -8,6 +8,7 @@ class Listeners {
 
     init() {
         this.documentReady();
+        this.newsItems();
         this.windowResize();
         this.newsSliderArrowsClick();
         this.newsSliderButtonsClick();
@@ -41,6 +42,59 @@ class Listeners {
             image.src = jQuery(car).find('.slider-images img').first().attr('src');
             car.prepend(image);
         });
+    }
+
+    newsItems(){
+        let news = Array.from(this.dom.news.find('.views-row'));
+        let template = ``;
+        news = news.filter(item => {
+            return jQuery(item).find('.news-image img').length > 0 && jQuery(item).remove();
+        });
+        if(news.length > 3 && news.length < 7){
+            this.dom.newsSlider.find('.ci-desk li:nth-child(2)').css('display','inline-block');
+        }else if(news.length > 6){
+            this.dom.newsSlider.find('.ci-desk li:nth-child(2), .ci-desk li:nth-child(3)').css('display','inline-block');
+        }
+        this.dom.news.removeClass('news-content');
+        // news.reverse();
+        let index = 0;
+        news.forEach((item,i) => {
+            if(i > 9){
+                return false;
+            }
+            let newsObj = {
+                img: jQuery(item).find('.news-image img').attr('src'),
+                title: jQuery(item).find('.news-title').text().trim(),
+                body: jQuery(item).find('.news-body').text().trim(),
+                mehr: jQuery(item).find('.news-mehr a').attr('href')
+            }
+            if(index === 0){
+                template += '<div class="carousel-item"><div class="row">'
+            }
+            template += `
+                            <div class="col-xs-12 col-sm-8 offset-sm-2 col-md-8 offset-md-2 col-lg-4 offset-lg-0">
+                                <div class="s2-item">
+                                    <div class="row">
+                                        <div class="col-5"><img src="${newsObj.img}" alt="" class="img-fluid slider2-img"></div>
+                                        <div class="col-7">
+                                            <div class="s2-item-content">
+                                                <h3>${newsObj.title}</h3>
+                                                <p>${newsObj.body}</p>
+                                                <a href="${newsObj.mehr}" class="btn btn-block site-btn">Mehr</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+            `;
+
+            if(index++ === 2 || news.length - 1 === i){
+                template += '</div></div>';
+                index = 0;
+            }
+        });
+        this.dom.newsSlider.find('.carousel-inner').empty().html(template);
+        this.dom.newsSlider.find('.carousel-item').first().addClass('active');
     }
 
     initDatetimePickers(){
@@ -221,7 +275,7 @@ class Listeners {
     }
 
     newsSliderArrowsClick() {
-        this.dom.newsSlider.find('.ns-arrow').on('click', (e) => {
+        this.dom.newsSlider.on('click','.ns-arrow', (e) => {
             if (e.target.parentNode.dataset['dir'] === 'right') {
                 this.dom.newsSlider.find('.carousel-control-next').click();
             } else {
