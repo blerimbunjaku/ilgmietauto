@@ -378,12 +378,12 @@ class Listeners {
         faqAccordions.html(template);
     }
 
-    // add target="_blank" to linkgs
-    blankTarget(){
+     // add target="_blank" to linkgs
+     blankTarget(){
         jQuery('a[href^="http://"], a[href^="https://"]').attr('target','_blank');
     }
 
-    /**
+     /**
      * Handlers
      * all handlers name starts with _ (underline)
      */
