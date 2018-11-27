@@ -31,6 +31,7 @@ class Listeners {
             this.initDatetimePickers();
             this.addReservierungIframe();
             this.preisClick();
+            this.blankTarget();
         });
     }
 
@@ -375,6 +376,11 @@ class Listeners {
             ` + template;
         });
         faqAccordions.html(template);
+    }
+
+    // add target="_blank" to linkgs
+    blankTarget(){
+        jQuery('a[href^="http://"], a[href^="https://"]').attr('target','_blank');
     }
 
     /**
