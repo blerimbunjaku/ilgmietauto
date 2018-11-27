@@ -277,7 +277,7 @@ class Listeners {
     }
 
     newsSliderArrowsClick() {
-        this.dom.newsSlider.find('.ns-arrow').on('click', (e) => {
+        this.dom.newsSlider.on('click', '.ns-arrow', (e) => {
             if (e.target.parentNode.dataset['dir'] === 'right') {
                 this.dom.newsSlider.find('.carousel-control-next').click();
             } else {
