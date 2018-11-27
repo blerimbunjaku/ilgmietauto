@@ -955,6 +955,7 @@ nav.navbar {
 
 .no-lh {
   line-height: 0;
+  margin-bottom: 12px;
 }
 
 /*
@@ -1108,6 +1109,14 @@ nav.navbar {
 
 .navbar-brand {
   display: none;
+}
+
+.tel-row {
+  margin-bottom: 17px;
+}
+
+.slider2-img {
+  width: 100%;
 }
 
 /*# sourceMappingURL=app.css.map */

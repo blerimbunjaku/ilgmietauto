@@ -75,8 +75,8 @@ class Listeners {
                             <div class="col-xs-12 col-sm-8 offset-sm-2 col-md-8 offset-md-2 col-lg-4 offset-lg-0">
                                 <div class="s2-item">
                                     <div class="row">
-                                        <div class="col-5"><img src="${newsObj.img}" alt="" class="img-fluid slider2-img"></div>
-                                        <div class="col-7">
+                                        <div class="col-12 col-sm-5"><img src="${newsObj.img}" alt="" class="img-fluid slider2-img"></div>
+                                        <div class="col-12 col-sm-7">
                                             <div class="s2-item-content">
                                                 <h3>${newsObj.title}</h3>
                                                 <p>${newsObj.body}</p>
