@@ -414,6 +414,8 @@ nav.navbar *:hover {
 }
 .news-container .second-slider .s2-item .s2-item-content p {
   font-size: 14px;
+  height: 175px;
+  overflow-y: auto;
 }
 .news-container .second-slider .s2-item img {
   height: 100%;
