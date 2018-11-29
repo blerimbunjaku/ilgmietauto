@@ -66,9 +66,9 @@ class Listeners {
             let newsObj = {
                 img: jQuery(item).find('.news-image img').attr('src'),
                 title: jQuery(item).find('.news-title').text().trim(),
-                body: jQuery(item).find('.news-body').text().trim(),
+                body: jQuery(item).find('.news-body').html().trim(),
                 mehr: jQuery(item).find('.news-mehr a').attr('href')
-            }
+            };
             if (index === 0) {
                 template += '<div class="carousel-item"><div class="row">'
             }
@@ -80,7 +80,7 @@ class Listeners {
                                         <div class="col-sm-12 col-md-7">
                                             <div class="s2-item-content">
                                                 <h3>${newsObj.title}</h3>
-                                                <p>${newsObj.body}</p>
+                                                <div class="news-body">${newsObj.body}</div>
                                                 <a href="${newsObj.mehr}" class="btn btn-block site-btn">Mehr</a>
                                             </div>
                                         </div>

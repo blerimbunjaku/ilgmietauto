@@ -412,7 +412,7 @@ nav.navbar *:hover {
 .news-container .second-slider .s2-item .s2-item-content {
   padding: 15px;
 }
-.news-container .second-slider .s2-item .s2-item-content p {
+.news-container .second-slider .s2-item .s2-item-content div.news-body {
   font-size: 14px;
   height: 175px;
   overflow-y: auto;
