@@ -1139,6 +1139,7 @@ nav.navbar {
   display: block;
   margin-bottom: 10px;
   color: #005197;
+  font-size: 25px;
 }
 .team-container .person-content p {
   color: gray;
