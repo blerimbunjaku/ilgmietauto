@@ -435,7 +435,7 @@ nav.navbar *:hover {
 .map-container #map {
   width: 100%;
   height: 100%;
-  min-height: 443px;
+  min-height: 500px;
 }
 .map-container .map-p {
   margin-bottom: 50px;
@@ -584,7 +584,6 @@ footer.footer .f-cols {
 }
 
 .k-info-parent {
-  min-height: 410px;
   position: relative;
 }
 .k-info-parent .k-info {
@@ -933,6 +932,7 @@ footer.footer .f-cols {
 
 div.img-fluid img {
   max-width: 100% !important;
+  height: auto !important;
 }
 
 #contactForm .js-form-item {
@@ -1113,12 +1113,43 @@ nav.navbar {
   display: none;
 }
 
-.tel-row {
-  margin-bottom: 17px;
-}
-
 .slider2-img {
   width: 100%;
+}
+
+.team-container {
+  margin: 60px auto;
+}
+.team-container .person-item {
+  margin-bottom: 50px;
+  text-align: center;
+}
+.team-container .person-image {
+  margin-bottom: 15px;
+}
+.team-container .person-image img {
+  width: 150px;
+  height: 150px !important;
+  border-radius: 50%;
+  border: 2px solid #005197;
+  object-fit: cover;
+}
+.team-container .person-title {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10px;
+  color: #005197;
+}
+.team-container .person-content p {
+  color: gray;
+  text-align: left;
+  margin-bottom: 0;
+}
+.team-container .person-content > p:first-child {
+  padding-bottom: 15px;
+  text-align: center;
+  border-bottom: 1px solid #005197;
+  margin-bottom: 15px;
 }
 
 /*# sourceMappingURL=app.css.map */

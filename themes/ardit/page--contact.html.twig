@@ -8,8 +8,9 @@
 <section class="map-container">
     <div class="container">
         <div class="row">
-            <div class="col-sm-12 col-md-6 col-lg-4 k-info-parent">
-                <div class="k-info">
+            <div class="col-sm-12 col-md-6 k-info-parent">
+                {#<div class="k-info">#}
+                <div>
                     <h3>Ilgauto AG</h3>
                     <p>
                         <strong>{{ page.before_header.address }}</strong>
@@ -27,10 +28,16 @@
                         <div class="col-4"><strong>E-Mail: </strong></div>
                         <div class="col-8"><strong>{{ page.before_header.email }}</strong></div>
                     </div>
+                    <div class="route-btn">
+                        {#<a href="javascript:void(0)" class="btn site-btn btn-block"><i class="fas fa-map-marked-alt"></i>#}
+                        {#Route</a>#}
+                        {{ page.under_content.kontakt_route_button }}
+                    </div>
                 </div>
             </div>
-            <div class="col-sm-12 col-md-6 col-lg-4 k-info-parent">
-                <div class="k-info">
+            <div class="col-sm-12 col-md-6 k-info-parent">
+                {#<div class="k-info">#}
+                <div>
                     <h3>Öffnungszeiten</h3>
                     <div class="row">
                         <div class="col-md-12 col-lg-6 mwt text-right"><strong>Montag-Samstag:</strong></div>
@@ -45,13 +52,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 col-lg-4 k-info-parent">
-                <div class="k-info route-btn">
-                    {#<a href="javascript:void(0)" class="btn site-btn btn-block"><i class="fas fa-map-marked-alt"></i>#}
-                        {#Route</a>#}
-                    {{ page.under_content.kontakt_route_button }}
-                </div>
-            </div>
+            {#<div class="col-md-12 col-lg-4 k-info-parent">#}
+                {##}
+            {#</div>#}
         </div>
     </div>
 </section>

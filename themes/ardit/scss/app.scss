@@ -492,7 +492,7 @@ nav.navbar {
   #map {
     width: 100%;
     height: 100%;
-    min-height: 443px;
+    min-height: 500px;
   }
 
   .map-p {
@@ -667,7 +667,7 @@ footer.footer {
 }
 
 .k-info-parent {
-  min-height: 410px;
+  //min-height: 410px;
   position: relative;
 
   .k-info {
@@ -1055,6 +1055,7 @@ footer.footer {
 div.img-fluid{
   img{
     max-width:100% !important;
+    height: auto !important;
   }
 }
 
@@ -1238,9 +1239,46 @@ nav.navbar{
   display:none;
 }
 .tel-row{
-  margin-bottom:17px;
+  //margin-bottom:17px;
 }
 
 .slider2-img{
   width:100%;
+}
+
+.team-container{
+  margin:60px auto;
+  .person-item{
+    margin-bottom:50px;
+    text-align:center;
+  }
+  .person-image{
+    margin-bottom:15px;
+    img{
+      width:150px;
+      height:150px !important;
+      border-radius:50%;
+      border:2px solid $mainColor;
+      object-fit: cover;
+    }
+  }
+  .person-title{
+    font-weight:bold;
+    display:block;
+    margin-bottom:10px;
+    color: $mainColor;
+  }
+  .person-content{
+    p{
+      color:gray;
+      text-align:left;
+      margin-bottom:0;
+    }
+    >p:first-child{
+      padding-bottom:15px;
+      text-align:center;
+      border-bottom:1px solid $mainColor;
+      margin-bottom:15px;
+    }
+  }
 }
