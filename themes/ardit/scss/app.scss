@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
-
+@font-face {
+  font-family:'Font Awesome 5 Free';
+  src: url('../webfonts/fa-solid-900.woff2') format('woff2');
+}
 $mainColor: #005197;
 $bgHighlight: #ededed;
 $sliderHeight: 650px;
@@ -209,8 +212,8 @@ nav.navbar {
 
 .carousel.slide.first-slide {
   h1 *,
-  h6 *{
-    text-align:left !important;
+  h6 * {
+    text-align: left !important;
   }
   min-height: $sliderHeight !important;
   max-height: $sliderHeight !important;
@@ -241,12 +244,12 @@ nav.navbar {
 .slider-txt-left {
   margin-top: 110px;
   z-index: 99999 !important;
-  margin-left:0;
+  margin-left: 0;
 }
 
 .slider-right {
   margin-top: 110px;
-  margin-left:auto;
+  margin-left: auto;
   min-height: 350px;
   z-index: 99999 !important;
 
@@ -263,10 +266,10 @@ nav.navbar {
   z-index: 10;
 }
 
-.navbar-nav{
-  *{
-    font-weight:bold !important;
-    text-transform:uppercase !important;
+.navbar-nav {
+  * {
+    font-weight: bold !important;
+    text-transform: uppercase !important;
   }
 }
 
@@ -321,6 +324,7 @@ nav.navbar {
     box-sizing: border-box;
     height: 550px;
     overflow-y: auto;
+    overflow-x: hidden;
     position: relative;
 
     img {
@@ -492,7 +496,7 @@ nav.navbar {
   #map {
     width: 100%;
     height: 100%;
-    min-height: 500px;
+    min-height: 505px;
   }
 
   .map-p {
@@ -566,7 +570,10 @@ footer.footer {
     preise
 */
 .bg-content {
-  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;;
   background-position: center;
   padding: 230px 10px 170px 10px;
   color: white;
@@ -579,19 +586,19 @@ footer.footer {
     z-index: -1;
     top: 0;
     left: 0;
-    width:100%;
-    height:100%;
+    width: 100%;
+    height: 100%;
     img {
       position: absolute;
       z-index: -1;
       top: 0;
       left: 0;
       min-width: 100%;
-      width:auto;
+      width: auto;
       object-fit: cover;
-      min-height:100%;
+      min-height: 100%;
       max-height: 100%;
-      max-width:100%;
+      max-width: 100%;
     }
   }
 }
@@ -603,7 +610,8 @@ footer.footer {
 .about-bg {
   background-image: url(../images/about-bg.png);
 }
-.tabs{
+
+.tabs {
   .tab-link {
     background: $mainColor;
     padding: 7px 10px;
@@ -632,6 +640,7 @@ footer.footer {
     padding: 15px;
   }
 }
+
 .preise-content {
   margin: 100px auto;
   table {
@@ -693,9 +702,8 @@ footer.footer {
   padding: 70px 20px;
   #block-ardit-page-title,
   #edit-submit,
-  #edit-preview
-  {
-    display:none;
+  #edit-preview {
+    display: none;
   }
   input,
   select,
@@ -713,12 +721,12 @@ footer.footer {
     background-color: #fff;
     background-clip: padding-box;
     border-radius: .25rem;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
   }
-  label{
-    font-weight:bold;
-    margin-bottom:0;
-    margin-top:15px;
+  label {
+    font-weight: bold;
+    margin-bottom: 0;
+    margin-top: 15px;
   }
 
   textarea {
@@ -760,11 +768,13 @@ footer.footer {
   //  margin-bottom: -106px !important;
   //}
 }
-@media (min-width: 992px){
-  .car-p{
-    width:32% !important;
+
+@media (min-width: 992px) {
+  .car-p {
+    width: 32% !important;
   }
 }
+
 @media (max-width: 991px) {
   .icons .line {
     display: none !important;
@@ -778,8 +788,8 @@ footer.footer {
       text-align: left !important;
     }
   }
-  .car-p{
-    width:48% !important;
+  .car-p {
+    width: 48% !important;
   }
   .slider-right {
     text-align: center !important;
@@ -807,7 +817,7 @@ footer.footer {
 
   nav.navbar {
     background: rgb(255, 255, 255) !important;
-    .navbar-collapse{
+    .navbar-collapse {
       position: absolute !important;
       top: 67px !important;
       width: 100% !important;
@@ -838,11 +848,11 @@ footer.footer {
 */
 .cars-personen {
   margin: 50px auto 100px auto;
-  > .row > div{
-    width:100% !important;
+  > .row > div {
+    width: 100% !important;
   }
-  .views-view-grid > .views-row{
-    width:100% !important;
+  .views-view-grid > .views-row {
+    width: 100% !important;
   }
   .views-field-field-pw-mieten,
   .views-field-field-infos,
@@ -853,48 +863,48 @@ footer.footer {
   .views-field-field-anhanger-pw-mieten,
   .views-field-field-anhanger-infos,
   .views-field-field-personenbusse-pw-mieten,
-  .views-field-field-personenbusse-infos{
-    width:48%;
-    a{
-      color:white;
-      text-decoration:none;
-      font-size:15px;
+  .views-field-field-personenbusse-infos {
+    width: 48%;
+    a {
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
     }
   }
   .views-field-field-pw-mieten,
   .views-field-field-personenbusse-pw-mieten,
   .views-field-field-cr-pw-mieten,
   .views-field-field-anhanger-pw-mieten,
-  .views-field-field-lieferwagen-pw-mieten{
-    margin:0 1% 0 0 !important;
-    float:left;
+  .views-field-field-lieferwagen-pw-mieten {
+    margin: 0 1% 0 0 !important;
+    float: left;
   }
   .views-field-field-infos,
   .views-field-field-personenbusse-infos,
   .views-field-field-cr-infos,
   .views-field-field-anhanger-infos,
-  .views-field-field-lieferwagen-infos{
-    margin:0 0 0 1% !important;
-    float:right;
+  .views-field-field-lieferwagen-infos {
+    margin: 0 0 0 1% !important;
+    float: right;
   }
   .views-field-field-model,
   .views-field-field-personenbusse-model,
   .views-field-field-cr-model,
   .views-field-field-anhanger-model,
-  .views-field-field-lieferwagen-model{
-    height:100px;
+  .views-field-field-lieferwagen-model {
+    height: 100px;
     overflow-y: auto;
   }
   .views-field-title,
   .views-field-personenbusse-title,
   .views-field-cr-title,
   .views-field-anhangeranhanger-title,
-  .views-field-field-lieferwagen-title{
-    height:80px;
+  .views-field-field-lieferwagen-title {
+    height: 80px;
   }
-  .car-p{
-    margin-right:1% !important;
-    float:left;
+  .car-p {
+    margin-right: 1% !important;
+    float: left;
     margin-top: 50px;
     padding: 25px;
     img {
@@ -904,7 +914,7 @@ footer.footer {
     }
 
     p {
-      margin:0;
+      margin: 0;
     }
 
     h4 {
@@ -916,40 +926,40 @@ footer.footer {
       color: #404e56;
       width: 20%;
       margin-right: 2%;
-      margin-left:2%;
+      margin-left: 2%;
       float: left;
-      >div{
+      > div {
         //display:inline;
-        &:before{
+        &:before {
           content: " ";
           background-size: 122px;
-          padding:0 10px;
-          display:inline;
+          padding: 0 10px;
+          display: inline;
           font-family: "Font Awesome 5 Free";
           font-weight: 900;
-          top:0;
-          left:-5px;
+          top: 0;
+          left: -5px;
         }
       }
-      &.ci1 >div:before{
+      &.ci1 > div:before {
         background-image: url(../images/icons.png);
         background-position: 0 -269px;
       }
-      &.ci2 >div:before{
+      &.ci2 > div:before {
         background-image: url(../images/icons.png);
-        background-position:0 -396px;
+        background-position: 0 -396px;
       }
-      &.ci3 >div:before{
+      &.ci3 > div:before {
         background-image: url(../images/icons.png);
         background-position: 0 -332px;
       }
-      &.ci4 >div:before{
+      &.ci4 > div:before {
         background-image: url(../images/icons.png);
         background-position: 0 -300px;
       }
-      &.ci5 >div:before{
-        content:'\f192';
-        padding:0;
+      &.ci5 > div:before {
+        content: '\f192';
+        padding: 0;
       }
       i,
       span {
@@ -1009,7 +1019,7 @@ footer.footer {
   .views-row {
     width: 100% !important;
   }
-  .car-p{
+  .car-p {
     width: 100% !important;
   }
   .slider-txt-left {
@@ -1052,80 +1062,86 @@ footer.footer {
     }
   }
 }
-div.img-fluid{
-  img{
-    max-width:100% !important;
+
+div.img-fluid {
+  img {
+    max-width: 100% !important;
     height: auto !important;
   }
 }
 
-#contactForm{
-  .js-form-item{
-    width:50%;
-    float:left;
+#contactForm {
+  .js-form-item {
+    width: 50%;
+    float: left;
   }
 }
-nav.navbar{
-  max-height:100px;
+
+nav.navbar {
+  max-height: 100px;
 }
-.navbar-expand-lg .navbar-collapse{
-  visibility:hidden;
+
+.navbar-expand-lg .navbar-collapse {
+  visibility: hidden;
 }
-.dropdown-menu{
-  >li{
-    padding-top:0 !important;
-    p{
-      display:none;
+
+.dropdown-menu {
+  > li {
+    padding-top: 0 !important;
+    p {
+      display: none;
     }
   }
 }
-.no-lh{
-  line-height:0;
-  margin-bottom:12px;
+
+.no-lh {
+  line-height: 0;
+  margin-bottom: 12px;
 }
 
 /*
   flottenmieten container
 */
-.flottenmieten-container{
-  margin:50px auto;
-  .car-item{
-    margin-bottom:20px;
+.flottenmieten-container {
+  margin: 50px auto;
+  .car-item {
+    margin-bottom: 20px;
     padding-bottom: 20px;
-    border-bottom:1px solid #ccc;
-    p{
-      margin:0;
+    border-bottom: 1px solid #ccc;
+    p {
+      margin: 0;
     }
-    img{
-      margin-top:10px;
+    img {
+      margin-top: 10px;
     }
   }
 }
-.verkehrsbussen-container{
-  margin:50px auto;
-  .vers-images{
-    a{
-      width:25%;
-      display:inline-block;
-      img{
-        margin:0 auto;
+
+.verkehrsbussen-container {
+  margin: 50px auto;
+  .vers-images {
+    a {
+      width: 25%;
+      display: inline-block;
+      img {
+        margin: 0 auto;
       }
     }
   }
-  ul{
+  ul {
     list-style-type: circle;
-    li{
-      margin-bottom:10px;
+    li {
+      margin-bottom: 10px;
     }
   }
-  .vers-table{
-    padding:10px;
+  .vers-table {
+    padding: 10px;
     border: 1px solid black;
-    width:90%;
-    margin:0 auto;
-    table{
-      width:100%;
-      thead{
+    width: 90%;
+    margin: 0 auto;
+    table {
+      width: 100%;
+      thead {
         //background:#d3d3d3;
       }
     }
@@ -1135,151 +1151,158 @@ nav.navbar{
 /*
   FAQ container
 */
-.faq-container{
-  margin-top:120px;
-  margin-bottom:50px;
-  .faq-d-none{
-    display:none;
+.faq-container {
+  margin-top: 120px;
+  margin-bottom: 50px;
+  .faq-d-none {
+    display: none;
   }
-  .faq-accordions{
-    margin-top:50px;
+  .faq-accordions {
+    margin-top: 50px;
   }
 }
 
 /**
   Home slider iFrame module
 */
-.frame-module{
-  box-shadow:0 -15px 0 0 $mainColor;
-  padding:20px 10px 10px 10px;
-  background:white;
-  margin:-35px auto 0 auto;
-  max-width:400px;
-  .site-btn{
-    color:white;
+.frame-module {
+  box-shadow: 0 -15px 0 0 $mainColor;
+  padding: 20px 10px 10px 10px;
+  background: white;
+  margin: -35px auto 0 auto;
+  max-width: 400px;
+  .site-btn {
+    color: white;
   }
-  .form-control{
-    box-shadow:none;
-    outline:none;
+  .form-control {
+    box-shadow: none;
+    outline: none;
   }
-  *{
-    text-align:left;
-    color:black;
+  * {
+    text-align: left;
+    color: black;
   }
-  label{
-    font-size:12px;
+  label {
+    font-size: 12px;
   }
 }
-.ui-timepicker-container.ui-timepicker-no-scrollbar.ui-timepicker-standard{
-  z-index:99999 !important;
+
+.ui-timepicker-container.ui-timepicker-no-scrollbar.ui-timepicker-standard {
+  z-index: 99999 !important;
 }
-.headerPlaceholder{
-  background:red !important;
+
+.headerPlaceholder {
+  background: red !important;
 }
-.reservierung-rd{
-  padding-top:82px;
-  .frame-spinner{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-50%);
-    z-index:99999;
-    i{
-      font-size:50px;
+
+.reservierung-rd {
+  padding-top: 82px;
+  .frame-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99999;
+    i {
+      font-size: 50px;
     }
   }
   //margin-top:130px;
-  iframe{
-    display:none;
-    width:100% !important;
-    height:100% !important;
+  iframe {
+    display: none;
+    width: 100% !important;
+    height: 100% !important;
   }
 }
-.error-msg{
-  display:block;
-  font-size:13px;
+
+.error-msg {
+  display: block;
+  font-size: 13px;
 }
 
-.news-content{
-  display:none;
+.news-content {
+  display: none;
 }
+
 .ci-desk {
-  li:not(.active){
-    display:none;
+  li:not(.active) {
+    display: none;
   }
-  li:first-child{
-    display:inline-block;
+  li:first-child {
+    display: inline-block;
   }
 }
 
-.navbar-toggler{
-  position:absolute;
-  right:20px;
+.navbar-toggler {
+  position: absolute;
+  right: 20px;
 }
 
-.js-pager__items{
-  list-style-type:none;
-  padding:0;
-  margin:50px 0 0 0;
-  li{
-    margin:5px;
-    float:left;
-    a{
-      padding:5px 10px;
-      border:1px solid $mainColor;
+.js-pager__items {
+  list-style-type: none;
+  padding: 0;
+  margin: 50px 0 0 0;
+  li {
+    margin: 5px;
+    float: left;
+    a {
+      padding: 5px 10px;
+      border: 1px solid $mainColor;
       color: $mainColor;
-      &:hover{
+      &:hover {
         background: $mainColor;
-        color:white;
+        color: white;
       }
     }
   }
 }
-.navbar-brand{
-  display:none;
+
+.navbar-brand {
+  display: none;
 }
-.tel-row{
+
+.tel-row {
   //margin-bottom:17px;
 }
 
-.slider2-img{
-  width:100%;
+.slider2-img {
+  width: 100%;
 }
 
-.team-container{
-  margin:60px auto;
-  .person-item{
-    margin-bottom:50px;
-    text-align:center;
+.team-container {
+  margin: 60px auto;
+  .person-item {
+    margin-bottom: 50px;
+    text-align: center;
   }
-  .person-image{
-    margin-bottom:15px;
-    img{
-      width:150px;
-      height:150px !important;
-      border-radius:50%;
-      border:2px solid $mainColor;
+  .person-image {
+    margin-bottom: 15px;
+    img {
+      width: 150px;
+      height: 150px !important;
+      border-radius: 50%;
+      border: 2px solid $mainColor;
       object-fit: cover;
     }
   }
-  .person-title{
-    font-weight:bold;
-    display:block;
-    margin-bottom:10px;
+  .person-title {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
     color: $mainColor;
-    font-size:25px;
+    font-size: 25px;
   }
-  .person-content{
-    p{
-      color:gray;
-      text-align:left;
-      margin-bottom:0;
+  .person-content {
+    p {
+      color: gray;
+      text-align: left;
+      margin-bottom: 0;
     }
-    >p:first-child{
-      padding-bottom:15px;
-      text-align:center;
-      border-bottom:1px solid $mainColor;
-      margin-bottom:15px;
+    > p:first-child {
+      padding-bottom: 15px;
+      text-align: center;
+      border-bottom: 1px solid $mainColor;
+      margin-bottom: 15px;
     }
   }
 }

@@ -5,7 +5,7 @@ global-styling:
       css/bootstrap.min.css: {}
       css/datepicker.min.css: {}
       css/timepicker.min.css: {}
-      css/all.min.css: {}
+      https://use.fontawesome.com/releases/v5.5.0/css/all.css: {}
       css/lightslider.min.css: {}
       css/timeline.min.css: {}
       css/app.css: {}
