@@ -178,9 +178,7 @@ var Listeners = function () {
                     timeFormat: 'HH:mm'
                 });
             });
-            console.log(this.dom.frameModule);
-            if(this.dom.frameModule > 0){
-                alert('set localstorage item');
+            if(this.dom.frameModule.length > 0){
                 localStorage.setItem('frm', JSON.stringify(_this._objectifyForm(this.dom.frameModule.find('form'))));
             }
         }
