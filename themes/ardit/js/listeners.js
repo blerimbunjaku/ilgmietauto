@@ -187,26 +187,35 @@ var Listeners = function () {
         value: function(form = null){
             var validate = true;
             var _this = this;
-            if(!form){
-                form = this.dom.frameModule.find('form');
-            }
             var date = {
                 start: '',
                 end: ''
             };
-            form.find('.form-control').each(function () {
-                var name = jQuery(this).attr('name');
-                if (name === 'abfahrt_datum') {
-                    date.start = _this._createDateFromGermanFormat(jQuery(this).val(), jQuery(this).closest('.row').find('.timepicker').val());
-                } else if (name === 'ruckgabe_datum') {
-                    date.end = _this._createDateFromGermanFormat(jQuery(this).val(), jQuery(this).closest('.row').find('.timepicker').val());
-                }
-                if (jQuery(this).val().trim() === '') {
-                    validate = false;
-                }
-            });
+            if(!form){
+                form = JSON.parse(localStorage.getItem('frm'));
+                date.start = _this._createDateFromGermanFormat(form['abfahrt_datum'], form['abfahrt_uhrzeit']);
+                date.end =  _this._createDateFromGermanFormat(form['ruckgabe_datum'], form['ruckgabe_uhrzeit']);
+            }else{
+                form.find('.form-control').each(function () {
+                    var name = jQuery(this).attr('name');
+                    if (name === 'abfahrt_datum') {
+                        date.start = _this._createDateFromGermanFormat(jQuery(this).val(), jQuery(this).closest('.row').find('.timepicker').val());
+                    } else if (name === 'ruckgabe_datum') {
+                        date.end = _this._createDateFromGermanFormat(jQuery(this).val(), jQuery(this).closest('.row').find('.timepicker').val());
+                    }
+                    if (jQuery(this).val().trim() === '') {
+                        validate = false;
+                    }
+                });
+            }
+
             if (date.start >= date.end) {
-                form.find('.error-msg').text('Abfahrt kann nicht größer sein als Rückgabe.');
+                if(this.dom.frameModule.length > 0){
+                    form.find('.error-msg').text('Abfahrt kann nicht größer sein als Rückgabe.');
+                }else{
+                    alert('Abfahrt kann nicht größer sein als Rückgabe.');
+                    history.back();
+                }
                 return false;
             }
             return true;
