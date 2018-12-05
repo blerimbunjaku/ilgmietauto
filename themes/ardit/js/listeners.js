@@ -1,10 +1,39 @@
 'use strict';
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _createClass = function () {
+    function defineProperties(target, props) {
+        for (var i = 0; i < props.length; i++) {
+            var descriptor = props[i];
+            descriptor.enumerable = descriptor.enumerable || false;
+            descriptor.configurable = true;
+            if ("value" in descriptor) descriptor.writable = true;
+            Object.defineProperty(target, descriptor.key, descriptor);
+        }
+    }
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+    return function (Constructor, protoProps, staticProps) {
+        if (protoProps) defineProperties(Constructor.prototype, protoProps);
+        if (staticProps) defineProperties(Constructor, staticProps);
+        return Constructor;
+    };
+}();
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _toConsumableArray(arr) {
+    if (Array.isArray(arr)) {
+        for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
+            arr2[i] = arr[i];
+        }
+        return arr2;
+    } else {
+        return Array.from(arr);
+    }
+}
+
+function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+        throw new TypeError("Cannot call a class as a function");
+    }
+}
 
 var Listeners = function () {
     function Listeners(dom) {
@@ -26,7 +55,6 @@ var Listeners = function () {
             this.newsSliderButtonsClick();
             this.tabClick();
             this.kontaktFormSubmit();
-            this.insertMeta();
         }
     }, {
         key: 'documentReady',
@@ -48,12 +76,19 @@ var Listeners = function () {
                 _this2.addReservierungIframe();
                 _this2.preisClick();
                 _this2.blankTarget();
+                _this2.frameModuleInputChange();
+                _this2.carBlockMehrClick();
             });
         }
     }, {
-        key: 'insertMeta',
-        value: function() {
-            jQuery('head').append();
+        key: 'frameModuleInputChange',
+        value: function () {
+            var _this = this;
+            this.dom.frameModule.find('input.form-control').on('focusout change', function () {
+                setTimeout(function () {
+                    localStorage.setItem('frm', JSON.stringify(_this._objectifyForm(_this.dom.frameModule.find('form'))));
+                }, 200);
+            });
         }
     }, {
         key: 'addImageFromSlider',
@@ -143,6 +178,38 @@ var Listeners = function () {
                     timeFormat: 'HH:mm'
                 });
             });
+            if(this.dom.frameModule > 0){
+                localStorage.setItem('frm', JSON.stringify(_this._objectifyForm(this.dom.frameModule.find('form'))));
+            }
+        }
+    }, {
+        key: 'validateMainForm',
+        value: function(form = null){
+            var validate = true;
+            var _this = this;
+            if(!form){
+                form = this.dom.frameModule.find('form');
+            }
+            var date = {
+                start: '',
+                end: ''
+            };
+            form.find('.form-control').each(function () {
+                var name = jQuery(this).attr('name');
+                if (name === 'abfahrt_datum') {
+                    date.start = _this._createDateFromGermanFormat(jQuery(this).val(), jQuery(this).closest('.row').find('.timepicker').val());
+                } else if (name === 'ruckgabe_datum') {
+                    date.end = _this._createDateFromGermanFormat(jQuery(this).val(), jQuery(this).closest('.row').find('.timepicker').val());
+                }
+                if (jQuery(this).val().trim() === '') {
+                    validate = false;
+                }
+            });
+            if (date.start >= date.end) {
+                form.find('.error-msg').text('Abfahrt kann nicht größer sein als Rückgabe.');
+                return false;
+            }
+            return true;
         }
     }, {
         key: 'preisClick',
@@ -150,27 +217,8 @@ var Listeners = function () {
             var _this = this;
             this.dom.slider.find('.frame-btn').on('click', function () {
                 var form = jQuery(this).closest('form');
-                var validate = true;
-                var date = {
-                    start: '',
-                    end: ''
-                };
-                form.find('.form-control').each(function () {
-                    var name = jQuery(this).attr('name');
-                    if (name === 'abfahrt_datum') {
-                        date.start = _this._createDateFromGermanFormat(jQuery(this).val(), jQuery(this).closest('.row').find('.timepicker').val());
-                    } else if (name === 'ruckgabe_datum') {
-                        date.end = _this._createDateFromGermanFormat(jQuery(this).val(), jQuery(this).closest('.row').find('.timepicker').val());
-                    }
-                    if (jQuery(this).val().trim() === '') {
-                        validate = false;
-                    }
-                });
-                if (date.start >= date.end) {
-                    _this.dom.slider.find('.error-msg').text('Abfahrt kann nicht größer sein als Rückgabe.');
-                    return;
-                }
-                if (validate) {
+
+                if (_this.validateMainForm(form)) {
                     _this.dom.slider.find('.error-msg').text('');
                     localStorage.setItem('frm', JSON.stringify(_this._objectifyForm(form)));
                     window.location.href = '/reservierung-rd';
@@ -183,18 +231,21 @@ var Listeners = function () {
             if (!this.dom.reservierung) {
                 return;
             }
-            if (!localStorage.getItem('frm')) {
-                history.back();
-            }
             var _this = this;
-            var form = JSON.parse(localStorage.getItem('frm'));
-            form['startTimestamp'] = +new (Function.prototype.bind.apply(Date, [null].concat(_toConsumableArray(this._parseDateTime(form['abfahrt_datum'], form['abfahrt_uhrzeit'])))))();
-            form['endTimestamp'] = +new (Function.prototype.bind.apply(Date, [null].concat(_toConsumableArray(this._parseDateTime(form['ruckgabe_datum'], form['ruckgabe_uhrzeit'])))))();
-            localStorage.removeItem('frm');
-            var src = 'https://kunden2.cx9.de/ilg/reservierung_rd/cars&PHPSESSID=4qj01f6vodq3odn9lm37evmf24?startstation=001&endstation=001&region=&startdatetime=' + form['startTimestamp'] + '&enddatetime=' + form['endTimestamp'] + '&kategorie-select=&abholDatum=' + form['abfahrt_datum'] + '&abholZeit=' + form['abfahrt_uhrzeit'] + '&abgabeDatum=' + form['ruckgabe_datum'] + '&abgabeZeit=' + form['ruckgabe_uhrzeit'];
             var iframe = document.createElement('iframe');
             var spinner = jQuery(_this.dom.reservierung).find('.frame-spinner');
             var pixels = window.innerHeight - _this.dom.header.height() - _this.dom.top.height();
+            var src = '';
+            var form = JSON.parse(localStorage.getItem('frm'));
+            form['startTimestamp'] = +new (Function.prototype.bind.apply(Date, [null].concat(_toConsumableArray(this._parseDateTime(form['abfahrt_datum'], form['abfahrt_uhrzeit'])))))();
+            form['endTimestamp'] = +new (Function.prototype.bind.apply(Date, [null].concat(_toConsumableArray(this._parseDateTime(form['ruckgabe_datum'], form['ruckgabe_uhrzeit'])))))();
+
+            if (!URL.get('category')) {
+                src = this._headerModuleFrame(form, src);
+
+            } else {
+                src = this._carsModuleFrame(form, src);
+            }
             _this.dom.reservierung.style.height = pixels + 'px';
             iframe.src = src;
             this.dom.reservierung.appendChild(iframe);
@@ -202,6 +253,32 @@ var Listeners = function () {
                 spinner.hide();
                 jQuery(iframe).show();
             });
+        }
+    }, {
+        key: 'carBlockMehrClick',
+        value: function(){
+            var _this =  this;
+            this.dom.carMehr.on('click', function(e){
+                e.preventDefault();
+                if(!_this.validateMainForm()){
+                    var body = jQuery("html, body");
+                    body.stop().animate({scrollTop:0}, 500, 'swing');
+                }else{
+                    window.location.href = jQuery(this).find('a').attr('href');
+                }
+            });
+        }
+    }, {
+        key: '_headerModuleFrame',
+        value: function (form, src) {
+            src = 'https://kunden2.cx9.de/ilg/reservierung_rd/cars&PHPSESSID=4qj01f6vodq3odn9lm37evmf24?startstation=001&endstation=001&region=&startdatetime=' + form['startTimestamp'] + '&enddatetime=' + form['endTimestamp'] + '&kategorie-select=&abholDatum=' + form['abfahrt_datum'] + '&abholZeit=' + form['abfahrt_uhrzeit'] + '&abgabeDatum=' + form['ruckgabe_datum'] + '&abgabeZeit=' + form['ruckgabe_uhrzeit'];
+            return src;
+        }
+    }, {
+        key: '_carsModuleFrame',
+        value: function (form, src) {
+            src = 'https://kunden2.cx9.de/ilg/reservierung_rd/cars&PHPSESSID=4qj01f6vodq3odn9lm37evmf24?startstation=' + URL.get('station') + '&endstation=001&category=' + URL.get('category') + '&region=&startdatetime=' + form['startTimestamp'] + '&enddatetime=' + form['endTimestamp'] + '&kategorie-select=&abholDatum=' + form['abfahrt_datum'] + '&abholZeit=' + form['abfahrt_uhrzeit'] + '&abgabeDatum=' + form['ruckgabe_datum'] + '&abgabeZeit=' + form['ruckgabe_uhrzeit'];
+            return src;
         }
     }, {
         key: 'setActiveMenu',
@@ -457,7 +534,7 @@ var Listeners = function () {
         }
     }, {
         key: '_objectifyForm',
-        value: function _objectifyForm(formElement) {
+        value: function (formElement) {
             var form = formElement.serializeArray();
             var data = {};
             form.forEach(function (element) {
@@ -507,3 +584,35 @@ var Listeners = function () {
 
     return Listeners;
 }();
+var URL = {
+    path: decodeURIComponent(document.location.href), // the current url to parse
+    pathname: decodeURIComponent(document.location.pathname),
+    url: [],
+    get: function (key) { // this returns the value of the given key (example: '?name=myname') URL.get('name') returns "myname"
+        var val = this.path.substr(this.path.indexOf(key) + key.length + 1); // substring path by the given key
+        if (!this.path.includes(key)) { // checks if given argument exists on url
+            return false;
+        }
+        // if path includes '&', substring path from 0 to character '&'
+        if (val.includes('&')) {
+            val = val.substring(0, val.indexOf('&'));
+        }
+        return val;
+    },
+    split: function (delimeter) {
+        this.url = [];
+        var tmp = this.pathname.split(delimeter);
+        for (i in tmp) {
+            if (i > 0) {
+                this.url.push(tmp[i]);
+            }
+        }
+        return this;
+    },
+    getFromUrl: function (index) {
+        if (index < 0 || index > this.url.length - 1) {
+            throw new Error("Index must be > 0 <= " + (this.url.length - 1));
+        }
+        return this.url[index];
+    }
+}

@@ -53,6 +53,7 @@ var DOM = function DOM() {
      * main slider
      */
     this.slider = jQuery('#slider');
+    this.frameModule = this.slider.find('.frame-module');
     /**
      * main slider - end
      */
@@ -103,6 +104,8 @@ var DOM = function DOM() {
     this.autoBox = jQuery('#autoBoxModal');
     // auto box slider
     this.spinner = this.autoBox.find('.spinner');
+    // car item mehr button
+    this.carMehr = jQuery('.car-item-mehr');
 };
 
 var App = function () {
