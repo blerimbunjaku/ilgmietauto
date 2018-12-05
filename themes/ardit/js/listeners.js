@@ -179,6 +179,7 @@ var Listeners = function () {
                 });
             });
             if(this.dom.frameModule > 0){
+                alert('set localstorage item');
                 localStorage.setItem('frm', JSON.stringify(_this._objectifyForm(this.dom.frameModule.find('form'))));
             }
         }
