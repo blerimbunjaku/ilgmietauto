@@ -106,6 +106,7 @@ var DOM = function DOM() {
     this.spinner = this.autoBox.find('.spinner');
     // car item mehr button
     this.carMehr = jQuery('.car-item-mehr');
+    this.footerContact = jQuery('#footerContact');
 };
 
 var App = function () {

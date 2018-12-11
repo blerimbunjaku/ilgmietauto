@@ -1188,5 +1188,8 @@ nav.navbar {
     max-height: 650px !important;
   }
 }
+.err-msg {
+  display: none;
+}
 
 /*# sourceMappingURL=app.css.map */

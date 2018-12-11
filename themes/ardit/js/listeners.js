@@ -78,6 +78,7 @@ var Listeners = function () {
                 _this2.blankTarget();
                 _this2.frameModuleInputChange();
                 _this2.carBlockMehrClick();
+                _this2.footerContact();
             });
         }
     }, {
@@ -142,6 +143,27 @@ var Listeners = function () {
             this.dom.newsSlider.find('.carousel-item').first().addClass('active');
         }
     }, {
+        key: 'footerContact',
+        value: function(){
+            this.dom.footerContact.on('submit', function(e){
+                e.preventDefault();
+                var validate = true;
+                var inputs = [].slice.call(jQuery(this).find('input, textarea'));
+                inputs.forEach(input => {
+                    if(input.value.trim() === '' && input.getAttribute('type') !== 'hidden'){
+                        jQuery(input).closest('.form-group').find('.err-msg').show();
+                        validate = false;
+                    }else{
+                        jQuery(input).closest('.form-group').find('.err-msg').hide();
+                    }
+                });
+                if(validate){
+                    // jQuery(this).submit();
+                    e.target.submit();
+                }
+            });
+        }
+    }, {
         key: 'initDatetimePickers',
         value: function initDatetimePickers() {
             var today = new Date();
@@ -158,7 +180,7 @@ var Listeners = function () {
                     jQuery(dt).on('change', function () {
                         var inputDate = _this._createDateFromGermanFormat(jQuery(this).val());
                         inputDate.setDate(inputDate.getDate() + 1);
-                        const ruckgabe = $(this).closest('form').find('#ruckgabeDatum');
+                        var ruckgabe = $(this).closest('form').find('#ruckgabeDatum');
                         ruckgabe.val($(this).val());
                         inputDate.setMonth(inputDate.getMonth() - 1);
                         inputDate.setDate(inputDate.getDate() - 1);
@@ -437,14 +459,31 @@ var Listeners = function () {
         key: 'kontaktFormSubmit',
         value: function kontaktFormSubmit() {
             var submit = this.dom.kontakt.find('#kfs');
+            var form = this.dom.kontakt.find('form');
             var _this = this;
             submit.on('click', function (e) {
                 e.preventDefault();
+                var validate = true;
+                var captchaValidate = true;
                 if (grecaptcha.getResponse(widgetId1) === '') {
+                    captchaValidate = false;
+                }
+                _this.dom.kontakt.find('#recaptcha').next().hide();
+                var inputs = [].slice.call(form.find('input, textarea'));
+                inputs.forEach(function(input){
+                    if(input.getAttribute('type') !== 'hidden' && input.getAttribute('type') !== 'submit'){
+                        if(input.value === ''){
+                            validate = false;
+                            jQuery(input).css('border','1px solid red');
+                        }else{
+                            jQuery(input).css('border','0');
+                        }
+                    }
+                });
+                if(validate && captchaValidate){
+                    form.submit();
+                }else{
                     _this.dom.kontakt.find('#recaptcha').next().show();
-                } else {
-                    _this.dom.kontakt.find('#recaptcha').next().hide();
-                    _this.dom.kontakt.find('form').submit();
                 }
             });
         }
