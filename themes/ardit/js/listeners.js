@@ -158,6 +158,15 @@ var Listeners = function () {
                     jQuery(dt).on('change', function () {
                         var inputDate = _this._createDateFromGermanFormat(jQuery(this).val());
                         inputDate.setDate(inputDate.getDate() + 1);
+                        const ruckgabe = $(this).closest('form').find('#ruckgabeDatum');
+                        ruckgabe.val($(this).val());
+                        inputDate.setMonth(inputDate.getMonth() - 1);
+                        inputDate.setDate(inputDate.getDate() - 1);
+                        ruckgabe.datepicker('destroy').datepicker({
+                            date: inputDate,
+                            startDate: inputDate,
+                            format: 'dd.mm.yyyy'
+                        });
                     });
                 } else {
                     dt.value = twoDays.getDate() + '.' + (twoDays.getMonth() + 1) + '.' + twoDays.getFullYear();
@@ -184,14 +193,14 @@ var Listeners = function () {
         }
     }, {
         key: 'validateMainForm',
-        value: function(form = null){
+        value: function(form){
             var validate = true;
             var _this = this;
             var date = {
                 start: '',
                 end: ''
             };
-            if(!form){
+            if(arguments.length === 0){
                 form = JSON.parse(localStorage.getItem('frm'));
                 date.start = _this._createDateFromGermanFormat(form['abfahrt_datum'], form['abfahrt_uhrzeit']);
                 date.end =  _this._createDateFromGermanFormat(form['ruckgabe_datum'], form['ruckgabe_uhrzeit']);
@@ -473,8 +482,8 @@ var Listeners = function () {
 
     }, {
         key: 'faqAccordions',
-        value: function faqAccordions() {
-            if (!this.path.indexOf('faq') > -1) {
+        value: function() {
+            if (this.path.indexOf('faq') < 0) {
                 return;
             }
             var items = [].slice.call(this.dom.faq.find('.faq-item'));
@@ -599,11 +608,11 @@ var URL = {
     url: [],
     get: function (key) { // this returns the value of the given key (example: '?name=myname') URL.get('name') returns "myname"
         var val = this.path.substr(this.path.indexOf(key) + key.length + 1); // substring path by the given key
-        if (!this.path.includes(key)) { // checks if given argument exists on url
+        if (!this.path.indexOf(key) > -1) { // checks if given argument exists on url
             return false;
         }
         // if path includes '&', substring path from 0 to character '&'
-        if (val.includes('&')) {
+        if (val.indexOf('&') > -1) {
             val = val.substring(0, val.indexOf('&'));
         }
         return val;
