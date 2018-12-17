@@ -1,6 +1,46 @@
 <div class="banner">
     <div id="slider" class="carousel slide first-slide" data-ride="carousel" data-interval="false">
-
+        <div class="frame-module">
+            <form action="#">
+                <h5>Abholstation</h5>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupPrepend"><i class="fas fa-map-marker-alt"></i></span>
+                        </div>
+                        <input type="text" name="place" value="ilgauto ag" class="form-control" aria-describedby="inputGroupPrepend" required readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="abfahrtDatum">Abfahrt (Datum)</label>
+                            <input id="abfahrtDatum" name="abfahrt_datum" class="datepicker form-control">
+                        </div>
+                        <div class="col-6">
+                            <label for="abfahrtUhrzeit">Abfahrt (Uhrzeit)</label>
+                            <input id="abfahrtUhrzeit" name="abfahrt_uhrzeit" data-type="startTime" class="timepicker form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="ruckgabeDatum">Rückgabe (Datum)</label>
+                            <input id="ruckgabeDatum" name="ruckgabe_datum" class="datepicker form-control">
+                        </div>
+                        <div class="col-6">
+                            <label for="ruckgabeUhrzeit">Rückgabe (Uhrzeit)</label>
+                            <input id="ruckgabeUhrzeit" name="ruckgabe_uhrzeit" date-type="endTime" class="timepicker form-control">
+                        </div>
+                    </div>
+                </div>
+                <span class="text-danger error-msg"></span>
+                <div class="form-group">
+                    <a href="javascript:void(0)" class="text-center btn site-btn btn-block frame-btn">Preis ermitteln</a>
+                </div>
+            </form>
+        </div>
         <!-- Indicators -->
         <ul class="carousel-indicators">
             <li data-target="#slider" data-slide-to="0" class="active"></li>
@@ -9,59 +49,19 @@
         </ul>
 
         <div class="carousel-caption">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 col-lg-7 col-xl-5 offset-xl-1 slider-txt-left">
+            {#<div class="container">#}
+                {#<div class="row">#}
+                    {#<div class="col-md-12 col-lg-7 col-xl-5 offset-xl-1 slider-txt-left">#}
                         {#<h1>{{ page.slider.headertitle }}</h1>#}
                         {#<h6>{{ page.slider.header_subtitle }}</h6>#}
-                    </div>
-                    <div class="col-md-12 col-lg-5 col-xl-5 text-right slider-right">
+                    {#</div>#}
+                    {#<div class="col-md-12 col-lg-5 col-xl-5 text-right slider-right">#}
                         {#<iframe class="h-frame" scrolling="no" src="https://kunden2.cx9.de/ilg/reservierung_rd/"#}
                         {#frameborder="0"></iframe>#}
-                        <div class="frame-module">
-                            <form action="#">
-                                <h5>Abholstation</h5>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroupPrepend"><i class="fas fa-map-marker-alt"></i></span>
-                                        </div>
-                                        <input type="text" name="place" value="ilgauto ag" class="form-control" aria-describedby="inputGroupPrepend" required readonly>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <label for="abfahrtDatum">Abfahrt (Datum)</label>
-                                            <input id="abfahrtDatum" name="abfahrt_datum" class="datepicker form-control">
-                                        </div>
-                                        <div class="col-6">
-                                            <label for="abfahrtUhrzeit">Abfahrt (Uhrzeit)</label>
-                                            <input id="abfahrtUhrzeit" name="abfahrt_uhrzeit" data-type="startTime" class="timepicker form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <label for="ruckgabeDatum">Rückgabe (Datum)</label>
-                                            <input id="ruckgabeDatum" name="ruckgabe_datum" class="datepicker form-control">
-                                        </div>
-                                        <div class="col-6">
-                                            <label for="ruckgabeUhrzeit">Rückgabe (Uhrzeit)</label>
-                                            <input id="ruckgabeUhrzeit" name="ruckgabe_uhrzeit" date-type="endTime" class="timepicker form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <span class="text-danger error-msg"></span>
-                                <div class="form-group">
-                                    <a href="javascript:void(0)" class="text-center btn site-btn btn-block frame-btn">Preis ermitteln</a>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
         </div>
         <div class="carousel-inner d-none d-md-block ">
             <div class="carousel-item active">
@@ -69,7 +69,7 @@
                 <div class="carousel-item-content">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-12 col-lg-7 col-xl-5 offset-xl-1 slider-txt-left">
+                            <div class="col-md-12 col-lg-12 col-xl-5 offset-xl-1 slider-txt-left">
                                 <h1>{{ page.slider.headertitle }}</h1>
                                 <h6>{{ page.slider.header_subtitle }}</h6>
                             </div>
@@ -82,7 +82,7 @@
                 <div class="carousel-item-content">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-12 col-lg-7 col-xl-5 offset-xl-1 slider-txt-left">
+                            <div class="col-md-12 col-lg-12 col-xl-5 offset-xl-1 slider-txt-left">
                                 <h1>{{ page.slider.home_slider_two_title }}</h1>
                                 <h6>{{ page.slider.home_slider_two_subtitle }}</h6>
                             </div>
@@ -95,7 +95,7 @@
                 <div class="carousel-item-content">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-12 col-lg-7 col-xl-5 offset-xl-1 slider-txt-left">
+                            <div class="col-md-12 col-lg-12 col-xl-5 offset-xl-1 slider-txt-left">
                                 <h1>{{ page.slider.home_slider_three_title }}</h1>
                                 <h6>{{ page.slider.home_slider_three_subtitle }}</h6>
                             </div>

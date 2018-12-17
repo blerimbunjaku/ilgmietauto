@@ -43,6 +43,7 @@ var Listeners = function () {
         this.dom = dom;
         this.oldCarouselTemplate = '';
         this.path = document.location.href;
+        this.btfCount = 0;
     }
 
     _createClass(Listeners, [{
@@ -55,6 +56,12 @@ var Listeners = function () {
             this.newsSliderButtonsClick();
             this.tabClick();
             this.kontaktFormSubmit();
+            this.setTitle('ILG MIETAUTO');
+        }
+    }, {
+        key: 'setTitle',
+        value: function(title){
+            this.dom.document.find('title').text(title);
         }
     }, {
         key: 'documentReady',
@@ -79,6 +86,7 @@ var Listeners = function () {
                 _this2.frameModuleInputChange();
                 _this2.carBlockMehrClick();
                 _this2.footerContact();
+                _this2.frameModulePosition();
             });
         }
     }, {
@@ -90,6 +98,12 @@ var Listeners = function () {
                     localStorage.setItem('frm', JSON.stringify(_this._objectifyForm(_this.dom.frameModule.find('form'))));
                 }, 200);
             });
+        }
+    }, {
+        key: 'frameModulePosition',
+        value: function(){
+            const rightArrow = this.dom.slider.find('.carousel-control-next').width();
+            this.dom.frameModule.css('right', rightArrow + 'px');
         }
     }, {
         key: 'addImageFromSlider',
@@ -180,8 +194,8 @@ var Listeners = function () {
                     jQuery(dt).on('change', function () {
                         var inputDate = _this._createDateFromGermanFormat(jQuery(this).val());
                         inputDate.setDate(inputDate.getDate() + 1);
-                        var ruckgabe = $(this).closest('form').find('#ruckgabeDatum');
-                        ruckgabe.val($(this).val());
+                        var ruckgabe = jQuery(this).closest('form').find('#ruckgabeDatum');
+                        ruckgabe.val(jQuery(this).val());
                         inputDate.setMonth(inputDate.getMonth() - 1);
                         inputDate.setDate(inputDate.getDate() - 1);
                         ruckgabe.datepicker('destroy').datepicker({
@@ -242,7 +256,7 @@ var Listeners = function () {
 
             if (date.start >= date.end) {
                 if(this.dom.frameModule.length > 0){
-                    form.find('.error-msg').text('Abfahrt kann nicht größer sein als Rückgabe.');
+                    this.dom.frameModule.find('.error-msg').text('Abfahrt kann nicht größer sein als Rückgabe.');
                 }else{
                     alert('Abfahrt kann nicht größer sein als Rückgabe.');
                     history.back();
@@ -387,6 +401,7 @@ var Listeners = function () {
 
             this.dom.window.on('resize', function () {
                 _this3._bottomSliderCarouselFix();
+                _this3.frameModulePosition();
             });
         }
     }, {
@@ -567,7 +582,6 @@ var Listeners = function () {
         key: '_bottomSliderCarouselFix',
         value: function _bottomSliderCarouselFix() {
             var _this6 = this;
-
             var carouselItems = this.dom.newsSlider.find('.carousel-item');
             var items = carouselItems.find('.s2-item').parent();
             items.map(function (i, item) {
@@ -581,13 +595,14 @@ var Listeners = function () {
                 jQuery('#newsSlider .carousel-item').remove();
                 items.map(function (index, item) {
                     var activeClass = index === 0 ? ' active' : '';
-                    _this6.dom.newsSlider.find('.carousel-inner').append('\n                    <div class="carousel-item' + activeClass + '">' + item.outerHTML + '</div>\n                ');
+                    _this6.dom.newsSlider.find('.carousel-inner').append('\n<div class="carousel-item' + activeClass + '">' + item.outerHTML + '</div>\n');
                 });
             } else {
                 if (this.dom.newsSlider.find('.carousel-item.active > .row').children().length < 3) {
                     this.dom.newsSlider.html(this.oldCarouselTemplate);
                 }
             }
+            this.btfCount++;
         }
     }, {
         key: '_objectifyForm',
