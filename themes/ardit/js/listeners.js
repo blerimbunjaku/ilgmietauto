@@ -103,7 +103,10 @@ var Listeners = function () {
         key: 'frameModulePosition',
         value: function(){
             const rightArrow = this.dom.slider.find('.carousel-control-next').width();
-            this.dom.frameModule.css('right', rightArrow + 'px');
+            this.dom.frameModule.css({
+                'right': rightArrow + 'px',
+                'visibility': 'visible'
+            });
         }
     }, {
         key: 'addImageFromSlider',
