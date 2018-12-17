@@ -158,12 +158,10 @@ nav.navbar li .dropdown-menu .nav-link:hover {
   transition: 0.2s;
 }
 nav.navbar li span {
-  display: none !important;
-  width: 60%;
+  display: none;
+  width: 100%;
   height: 2px;
   background: #005197;
-  display: block;
-  margin: 0 auto;
 }
 nav.navbar li.active a.nav-link strong {
   color: #005197 !important;

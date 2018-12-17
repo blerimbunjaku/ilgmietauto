@@ -182,12 +182,10 @@ nav.navbar {
     }
 
     span {
-      display: none !important;
-      width: 60%;
+      display: none;
+      width: 100%;
       height: 2px;
       background: $mainColor;
-      display: block;
-      margin: 0 auto;
     }
 
     &.active {
