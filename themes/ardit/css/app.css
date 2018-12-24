@@ -1223,4 +1223,29 @@ nav.navbar {
   transform: translateY(-50%);
 }
 
+.lSAction a {
+  width: 29px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
+}
+.lSAction a.lSPrev {
+  background-position: 0px -2px;
+}
+.lSAction a.lSNext {
+  background-position: -35px -2px;
+}
+
+#imageGallery {
+  min-height: 400px;
+}
+#imageGallery li.lslide {
+  height: 400px !important;
+  max-width: 100% !important;
+  text-align: center;
+}
+#imageGallery li.lslide img {
+  height: 400px !important;
+  max-width: 100% !important;
+}
+
 /*# sourceMappingURL=app.css.map */

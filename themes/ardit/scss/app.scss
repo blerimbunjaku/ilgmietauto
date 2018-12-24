@@ -1367,3 +1367,29 @@ nav.navbar {
   z-index: 2;
   transform: translateY(-50%);
 }
+.lSAction{
+  a{
+    width:29px !important;
+    height:28px !important;
+    border-radius:50% !important;
+    &.lSPrev{
+      background-position: 0px -2px;
+    }
+    &.lSNext{
+      background-position:-35px -2px;
+    }
+  }
+}
+$imageSliderHeight: 400px;
+#imageGallery{
+  min-height:$imageSliderHeight;
+  li.lslide{
+    height:$imageSliderHeight !important;
+    max-width:100% !important;
+    text-align: center;
+    img{
+      height:$imageSliderHeight !important;
+      max-width:100% !important;
+    }
+  }
+}
