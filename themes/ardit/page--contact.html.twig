@@ -89,17 +89,16 @@
 <script>
     if(localStorage.getItem('cf')){
         var frm = JSON.parse(localStorage.getItem('cf'));
-        // console.log(frm['firma']);
+        var formEl = document.getElementById('contact-message-feedback-form');
         localStorage.removeItem('cf');
         document.querySelector('.mail-spinner').style.display = 'block';
-        document.getElementById('edit-field-vorname-name-0-value').value = frm['vorname'];
-        document.getElementById('edit-field-firma-0-value').value = frm['firma'];
-        document.getElementById('edit-field-e-0-value').value = frm['email'];
-        document.getElementById('edit-field-telefon-0-value').value = frm['telefon'];
-        document.getElementById('edit-field-kontakt-firma-0-value').value = frm['message'];
-        document.getElementById('edit-field-betreff-0-value').value = 'N/A';
-
-        document.getElementById('contact-message-feedback-form').submit();
+        formEl.querySelector('#edit-field-vorname-name-0-value').value = frm['vorname'];
+        formEl.querySelector('#edit-field-firma-0-value').value = frm['firma'];
+        formEl.querySelector('#edit-field-e-0-value').value = frm['email'];
+        formEl.querySelector('#edit-field-telefon-0-value').value = frm['telefon'];
+        formEl.querySelector('#edit-field-kontakt-firma-0-value').value = frm['message'];
+        formEl.querySelector('#edit-field-betreff-0-value').value = '-';
+        formEl.submit();
     }
     // Initialize and add the map
     function initMap() {
