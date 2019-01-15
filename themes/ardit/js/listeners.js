@@ -162,6 +162,7 @@ var Listeners = function () {
     }, {
         key: 'footerContact',
         value: function(){
+            var _this = this;
             this.dom.footerContact.on('submit', function(e){
                 e.preventDefault();
                 var validate = true;
@@ -176,6 +177,7 @@ var Listeners = function () {
                 });
                 if(validate){
                     // jQuery(this).submit();
+                    localStorage.setItem('cf', JSON.stringify(_this._objectifyForm(jQuery(this))));
                     e.target.submit();
                 }
             });

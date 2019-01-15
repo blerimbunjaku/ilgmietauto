@@ -1,7 +1,9 @@
 {% include directory ~ '/includes/region--header.html.twig' %}
 <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
 <script>var widgetId1;</script>
-
+<div class="mail-spinner">
+<i class="fas fa-spinner fa-spin"></i>
+</div>
 <section class="k-map">
     <div id="map"></div>
 </section>
@@ -85,6 +87,20 @@
 </section>
 {% include directory ~ '/includes/region--footer.html.twig' %}
 <script>
+    if(localStorage.getItem('cf')){
+        var frm = JSON.parse(localStorage.getItem('cf'));
+        // console.log(frm['firma']);
+        localStorage.removeItem('cf');
+        document.querySelector('.mail-spinner').style.display = 'block';
+        document.getElementById('edit-field-vorname-name-0-value').value = frm['vorname'];
+        document.getElementById('edit-field-firma-0-value').value = frm['firma'];
+        document.getElementById('edit-field-e-0-value').value = frm['email'];
+        document.getElementById('edit-field-telefon-0-value').value = frm['telefon'];
+        document.getElementById('edit-field-kontakt-firma-0-value').value = frm['message'];
+        document.getElementById('edit-field-betreff-0-value').value = 'N/A';
+
+        document.getElementById('contact-message-feedback-form').submit();
+    }
     // Initialize and add the map
     function initMap() {
         // The location of Uluru
@@ -108,7 +124,7 @@
         // Renders the HTML element with id 'example1' as a reCAPTCHA widget.
         // The id of the reCAPTCHA widget is assigned to 'widgetId1'.
         widgetId1 = grecaptcha.render('recaptcha', {
-            'sitekey': '6LcjEIAUAAAAAAOYh6Z_aO5_3MIMOffzGp6zRytD',
+            'sitekey': '6LeBlIQUAAAAAB3Gn549hnMFIwuLxi0E9F5Pvyes',
             'theme': 'light'
         });
     }
